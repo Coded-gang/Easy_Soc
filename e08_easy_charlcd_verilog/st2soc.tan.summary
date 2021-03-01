@@ -1,0 +1,66 @@
+--------------------------------------------------------------------------------------
+Timing Analyzer Summary
+--------------------------------------------------------------------------------------
+
+Type           : Worst-case tsu
+Slack          : N/A
+Required Time  : None
+Actual Time    : 7.349 ns
+From           : resetn
+To             : count_lcd[9]
+From Clock     : --
+To Clock       : lcdclk
+Failed Paths   : 0
+
+Type           : Worst-case tco
+Slack          : N/A
+Required Time  : None
+Actual Time    : 24.921 ns
+From           : set_data[2]
+To             : lcd_data[2]
+From Clock     : lcdclk
+To Clock       : --
+Failed Paths   : 0
+
+Type           : Worst-case th
+Slack          : N/A
+Required Time  : None
+Actual Time    : -3.646 ns
+From           : resetn
+To             : lcd_mode.00110
+From Clock     : --
+To Clock       : lcdclk
+Failed Paths   : 0
+
+Type           : Clock Setup: 'lcdclk'
+Slack          : N/A
+Required Time  : None
+Actual Time    : 154.66 MHz ( period = 6.466 ns )
+From           : delay_lcdclk[17]
+To             : count_lcd[9]
+From Clock     : lcdclk
+To Clock       : lcdclk
+Failed Paths   : 0
+
+Type           : Clock Hold: 'lcdclk'
+Slack          : Not operational: Clock Skew > Data Delay
+Required Time  : None
+Actual Time    : N/A
+From           : reg_h[5]
+To             : set_data[4]
+From Clock     : lcdclk
+To Clock       : lcdclk
+Failed Paths   : 161
+
+Type           : Total number of failed paths
+Slack          : 
+Required Time  : 
+Actual Time    : 
+From           : 
+To             : 
+From Clock     : 
+To Clock       : 
+Failed Paths   : 161
+
+--------------------------------------------------------------------------------------
+

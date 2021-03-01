@@ -1,0 +1,819 @@
+Classic Timing Analyzer report for st2soc
+Sat Sep 08 13:34:46 2007
+Quartus II Version 7.1 Build 156 04/30/2007 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Timing Analyzer Summary
+  3. Timing Analyzer Settings
+  4. Clock Settings Summary
+  5. Clock Setup: 'lcdclk'
+  6. Clock Hold: 'lcdclk'
+  7. tsu
+  8. tco
+  9. th
+ 10. Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2007 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Timing Analyzer Summary                                                                                                                                                                               ;
++------------------------------+------------------------------------------+---------------+----------------------------------+------------------+----------------+------------+----------+--------------+
+; Type                         ; Slack                                    ; Required Time ; Actual Time                      ; From             ; To             ; From Clock ; To Clock ; Failed Paths ;
++------------------------------+------------------------------------------+---------------+----------------------------------+------------------+----------------+------------+----------+--------------+
+; Worst-case tsu               ; N/A                                      ; None          ; 7.349 ns                         ; resetn           ; count_lcd[9]   ; --         ; lcdclk   ; 0            ;
+; Worst-case tco               ; N/A                                      ; None          ; 24.921 ns                        ; set_data[2]      ; lcd_data[2]    ; lcdclk     ; --       ; 0            ;
+; Worst-case th                ; N/A                                      ; None          ; -3.646 ns                        ; resetn           ; lcd_mode.00110 ; --         ; lcdclk   ; 0            ;
+; Clock Setup: 'lcdclk'        ; N/A                                      ; None          ; 154.66 MHz ( period = 6.466 ns ) ; delay_lcdclk[17] ; count_lcd[9]   ; lcdclk     ; lcdclk   ; 0            ;
+; Clock Hold: 'lcdclk'         ; Not operational: Clock Skew > Data Delay ; None          ; N/A                              ; reg_h[5]         ; set_data[4]    ; lcdclk     ; lcdclk   ; 161          ;
+; Total number of failed paths ;                                          ;               ;                                  ;                  ;                ;            ;          ; 161          ;
++------------------------------+------------------------------------------+---------------+----------------------------------+------------------+----------------+------------+----------+--------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Timing Analyzer Settings                                                                             ;
++-------------------------------------------------------+--------------------+------+----+-------------+
+; Option                                                ; Setting            ; From ; To ; Entity Name ;
++-------------------------------------------------------+--------------------+------+----+-------------+
+; Device Name                                           ; EP2C50F672C8       ;      ;    ;             ;
+; Timing Models                                         ; Final              ;      ;    ;             ;
+; Default hold multicycle                               ; Same as Multicycle ;      ;    ;             ;
+; Cut paths between unrelated clock domains             ; On                 ;      ;    ;             ;
+; Cut off read during write signal paths                ; On                 ;      ;    ;             ;
+; Cut off feedback from I/O pins                        ; On                 ;      ;    ;             ;
+; Report Combined Fast/Slow Timing                      ; Off                ;      ;    ;             ;
+; Ignore Clock Settings                                 ; Off                ;      ;    ;             ;
+; Analyze latches as synchronous elements               ; On                 ;      ;    ;             ;
+; Enable Recovery/Removal analysis                      ; Off                ;      ;    ;             ;
+; Enable Clock Latency                                  ; Off                ;      ;    ;             ;
+; Number of source nodes to report per destination node ; 10                 ;      ;    ;             ;
+; Number of destination nodes to report                 ; 10                 ;      ;    ;             ;
+; Number of paths to report                             ; 200                ;      ;    ;             ;
+; Report Minimum Timing Checks                          ; Off                ;      ;    ;             ;
+; Use Fast Timing Models                                ; Off                ;      ;    ;             ;
+; Report IO Paths Separately                            ; Off                ;      ;    ;             ;
++-------------------------------------------------------+--------------------+------+----+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Settings Summary                                                                                                                                                             ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+; Clock Node Name ; Clock Setting Name ; Type     ; Fmax Requirement ; Early Latency ; Late Latency ; Based on ; Multiply Base Fmax by ; Divide Base Fmax by ; Offset ; Phase offset ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+; lcdclk          ;                    ; User Pin ; None             ; 0.000 ns      ; 0.000 ns     ; --       ; N/A                   ; N/A                 ; N/A    ;              ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Setup: 'lcdclk'                                                                                                                                                                                                                         ;
++-----------------------------------------+-----------------------------------------------------+------------------+----------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; Slack                                   ; Actual fmax (period)                                ; From             ; To             ; From Clock ; To Clock ; Required Setup Relationship ; Required Longest P2P Time ; Actual Longest P2P Time ;
++-----------------------------------------+-----------------------------------------------------+------------------+----------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; N/A                                     ; 154.66 MHz ( period = 6.466 ns )                    ; delay_lcdclk[17] ; count_lcd[2]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.242 ns                ;
+; N/A                                     ; 154.66 MHz ( period = 6.466 ns )                    ; delay_lcdclk[17] ; count_lcd[0]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.242 ns                ;
+; N/A                                     ; 154.66 MHz ( period = 6.466 ns )                    ; delay_lcdclk[17] ; count_lcd[1]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.242 ns                ;
+; N/A                                     ; 154.66 MHz ( period = 6.466 ns )                    ; delay_lcdclk[17] ; count_lcd[4]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.242 ns                ;
+; N/A                                     ; 154.66 MHz ( period = 6.466 ns )                    ; delay_lcdclk[17] ; count_lcd[3]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.242 ns                ;
+; N/A                                     ; 154.66 MHz ( period = 6.466 ns )                    ; delay_lcdclk[17] ; count_lcd[5]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.242 ns                ;
+; N/A                                     ; 154.66 MHz ( period = 6.466 ns )                    ; delay_lcdclk[17] ; count_lcd[15]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.242 ns                ;
+; N/A                                     ; 154.66 MHz ( period = 6.466 ns )                    ; delay_lcdclk[17] ; count_lcd[14]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.242 ns                ;
+; N/A                                     ; 154.66 MHz ( period = 6.466 ns )                    ; delay_lcdclk[17] ; count_lcd[12]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.242 ns                ;
+; N/A                                     ; 154.66 MHz ( period = 6.466 ns )                    ; delay_lcdclk[17] ; count_lcd[10]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.242 ns                ;
+; N/A                                     ; 154.66 MHz ( period = 6.466 ns )                    ; delay_lcdclk[17] ; count_lcd[13]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.242 ns                ;
+; N/A                                     ; 154.66 MHz ( period = 6.466 ns )                    ; delay_lcdclk[17] ; count_lcd[11]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.242 ns                ;
+; N/A                                     ; 154.66 MHz ( period = 6.466 ns )                    ; delay_lcdclk[17] ; count_lcd[7]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.242 ns                ;
+; N/A                                     ; 154.66 MHz ( period = 6.466 ns )                    ; delay_lcdclk[17] ; count_lcd[6]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.242 ns                ;
+; N/A                                     ; 154.66 MHz ( period = 6.466 ns )                    ; delay_lcdclk[17] ; count_lcd[8]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.242 ns                ;
+; N/A                                     ; 154.66 MHz ( period = 6.466 ns )                    ; delay_lcdclk[17] ; count_lcd[9]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.242 ns                ;
+; N/A                                     ; 155.06 MHz ( period = 6.449 ns )                    ; count_lcd[12]    ; lcd_mode.00110 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.978 ns                ;
+; N/A                                     ; 155.09 MHz ( period = 6.448 ns )                    ; count_lcd[12]    ; lcd_mode.00011 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.977 ns                ;
+; N/A                                     ; 155.09 MHz ( period = 6.448 ns )                    ; count_lcd[12]    ; lcd_mode.01100 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.977 ns                ;
+; N/A                                     ; 155.09 MHz ( period = 6.448 ns )                    ; count_lcd[12]    ; lcd_mode.00101 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.977 ns                ;
+; N/A                                     ; 155.09 MHz ( period = 6.448 ns )                    ; count_lcd[12]    ; lcd_mode.00010 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.977 ns                ;
+; N/A                                     ; 155.11 MHz ( period = 6.447 ns )                    ; count_lcd[12]    ; lcd_mode.00100 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.976 ns                ;
+; N/A                                     ; 155.11 MHz ( period = 6.447 ns )                    ; count_lcd[12]    ; lcd_mode.01011 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.976 ns                ;
+; N/A                                     ; 155.16 MHz ( period = 6.445 ns )                    ; count_lcd[12]    ; lcd_mode.00001 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.974 ns                ;
+; N/A                                     ; 157.11 MHz ( period = 6.365 ns )                    ; count_lcd[12]    ; count_lcd[2]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.101 ns                ;
+; N/A                                     ; 157.11 MHz ( period = 6.365 ns )                    ; count_lcd[12]    ; count_lcd[0]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.101 ns                ;
+; N/A                                     ; 157.11 MHz ( period = 6.365 ns )                    ; count_lcd[12]    ; count_lcd[1]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.101 ns                ;
+; N/A                                     ; 157.11 MHz ( period = 6.365 ns )                    ; count_lcd[12]    ; count_lcd[4]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.101 ns                ;
+; N/A                                     ; 157.11 MHz ( period = 6.365 ns )                    ; count_lcd[12]    ; count_lcd[3]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.101 ns                ;
+; N/A                                     ; 157.11 MHz ( period = 6.365 ns )                    ; count_lcd[12]    ; count_lcd[5]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.101 ns                ;
+; N/A                                     ; 157.11 MHz ( period = 6.365 ns )                    ; count_lcd[12]    ; count_lcd[15]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.101 ns                ;
+; N/A                                     ; 157.11 MHz ( period = 6.365 ns )                    ; count_lcd[12]    ; count_lcd[14]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.101 ns                ;
+; N/A                                     ; 157.11 MHz ( period = 6.365 ns )                    ; count_lcd[12]    ; count_lcd[12]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.101 ns                ;
+; N/A                                     ; 157.11 MHz ( period = 6.365 ns )                    ; count_lcd[12]    ; count_lcd[10]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.101 ns                ;
+; N/A                                     ; 157.11 MHz ( period = 6.365 ns )                    ; count_lcd[12]    ; count_lcd[13]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.101 ns                ;
+; N/A                                     ; 157.11 MHz ( period = 6.365 ns )                    ; count_lcd[12]    ; count_lcd[11]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.101 ns                ;
+; N/A                                     ; 157.11 MHz ( period = 6.365 ns )                    ; count_lcd[12]    ; count_lcd[7]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.101 ns                ;
+; N/A                                     ; 157.11 MHz ( period = 6.365 ns )                    ; count_lcd[12]    ; count_lcd[6]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.101 ns                ;
+; N/A                                     ; 157.11 MHz ( period = 6.365 ns )                    ; count_lcd[12]    ; count_lcd[8]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.101 ns                ;
+; N/A                                     ; 157.11 MHz ( period = 6.365 ns )                    ; count_lcd[12]    ; count_lcd[9]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.101 ns                ;
+; N/A                                     ; 158.88 MHz ( period = 6.294 ns )                    ; delay_lcdclk[16] ; count_lcd[2]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.070 ns                ;
+; N/A                                     ; 158.88 MHz ( period = 6.294 ns )                    ; delay_lcdclk[16] ; count_lcd[0]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.070 ns                ;
+; N/A                                     ; 158.88 MHz ( period = 6.294 ns )                    ; delay_lcdclk[16] ; count_lcd[1]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.070 ns                ;
+; N/A                                     ; 158.88 MHz ( period = 6.294 ns )                    ; delay_lcdclk[16] ; count_lcd[4]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.070 ns                ;
+; N/A                                     ; 158.88 MHz ( period = 6.294 ns )                    ; delay_lcdclk[16] ; count_lcd[3]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.070 ns                ;
+; N/A                                     ; 158.88 MHz ( period = 6.294 ns )                    ; delay_lcdclk[16] ; count_lcd[5]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.070 ns                ;
+; N/A                                     ; 158.88 MHz ( period = 6.294 ns )                    ; delay_lcdclk[16] ; count_lcd[15]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.070 ns                ;
+; N/A                                     ; 158.88 MHz ( period = 6.294 ns )                    ; delay_lcdclk[16] ; count_lcd[14]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.070 ns                ;
+; N/A                                     ; 158.88 MHz ( period = 6.294 ns )                    ; delay_lcdclk[16] ; count_lcd[12]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.070 ns                ;
+; N/A                                     ; 158.88 MHz ( period = 6.294 ns )                    ; delay_lcdclk[16] ; count_lcd[10]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.070 ns                ;
+; N/A                                     ; 158.88 MHz ( period = 6.294 ns )                    ; delay_lcdclk[16] ; count_lcd[13]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.070 ns                ;
+; N/A                                     ; 158.88 MHz ( period = 6.294 ns )                    ; delay_lcdclk[16] ; count_lcd[11]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.070 ns                ;
+; N/A                                     ; 158.88 MHz ( period = 6.294 ns )                    ; delay_lcdclk[16] ; count_lcd[7]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.070 ns                ;
+; N/A                                     ; 158.88 MHz ( period = 6.294 ns )                    ; delay_lcdclk[16] ; count_lcd[6]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.070 ns                ;
+; N/A                                     ; 158.88 MHz ( period = 6.294 ns )                    ; delay_lcdclk[16] ; count_lcd[8]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.070 ns                ;
+; N/A                                     ; 158.88 MHz ( period = 6.294 ns )                    ; delay_lcdclk[16] ; count_lcd[9]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.070 ns                ;
+; N/A                                     ; 159.11 MHz ( period = 6.285 ns )                    ; delay_lcdclk[11] ; count_lcd[2]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.059 ns                ;
+; N/A                                     ; 159.11 MHz ( period = 6.285 ns )                    ; delay_lcdclk[11] ; count_lcd[0]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.059 ns                ;
+; N/A                                     ; 159.11 MHz ( period = 6.285 ns )                    ; delay_lcdclk[11] ; count_lcd[1]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.059 ns                ;
+; N/A                                     ; 159.11 MHz ( period = 6.285 ns )                    ; delay_lcdclk[11] ; count_lcd[4]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.059 ns                ;
+; N/A                                     ; 159.11 MHz ( period = 6.285 ns )                    ; delay_lcdclk[11] ; count_lcd[3]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.059 ns                ;
+; N/A                                     ; 159.11 MHz ( period = 6.285 ns )                    ; delay_lcdclk[11] ; count_lcd[5]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.059 ns                ;
+; N/A                                     ; 159.11 MHz ( period = 6.285 ns )                    ; delay_lcdclk[11] ; count_lcd[15]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.059 ns                ;
+; N/A                                     ; 159.11 MHz ( period = 6.285 ns )                    ; delay_lcdclk[11] ; count_lcd[14]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.059 ns                ;
+; N/A                                     ; 159.11 MHz ( period = 6.285 ns )                    ; delay_lcdclk[11] ; count_lcd[12]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.059 ns                ;
+; N/A                                     ; 159.11 MHz ( period = 6.285 ns )                    ; delay_lcdclk[11] ; count_lcd[10]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.059 ns                ;
+; N/A                                     ; 159.11 MHz ( period = 6.285 ns )                    ; delay_lcdclk[11] ; count_lcd[13]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.059 ns                ;
+; N/A                                     ; 159.11 MHz ( period = 6.285 ns )                    ; delay_lcdclk[11] ; count_lcd[11]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.059 ns                ;
+; N/A                                     ; 159.11 MHz ( period = 6.285 ns )                    ; delay_lcdclk[11] ; count_lcd[7]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.059 ns                ;
+; N/A                                     ; 159.11 MHz ( period = 6.285 ns )                    ; delay_lcdclk[11] ; count_lcd[6]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.059 ns                ;
+; N/A                                     ; 159.11 MHz ( period = 6.285 ns )                    ; delay_lcdclk[11] ; count_lcd[8]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.059 ns                ;
+; N/A                                     ; 159.11 MHz ( period = 6.285 ns )                    ; delay_lcdclk[11] ; count_lcd[9]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.059 ns                ;
+; N/A                                     ; 159.21 MHz ( period = 6.281 ns )                    ; count_lcd[7]     ; lcd_mode.00110 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.810 ns                ;
+; N/A                                     ; 159.24 MHz ( period = 6.280 ns )                    ; count_lcd[7]     ; lcd_mode.00011 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.809 ns                ;
+; N/A                                     ; 159.24 MHz ( period = 6.280 ns )                    ; count_lcd[7]     ; lcd_mode.01100 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.809 ns                ;
+; N/A                                     ; 159.24 MHz ( period = 6.280 ns )                    ; count_lcd[7]     ; lcd_mode.00101 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.809 ns                ;
+; N/A                                     ; 159.24 MHz ( period = 6.280 ns )                    ; count_lcd[7]     ; lcd_mode.00010 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.809 ns                ;
+; N/A                                     ; 159.26 MHz ( period = 6.279 ns )                    ; count_lcd[7]     ; lcd_mode.00100 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.808 ns                ;
+; N/A                                     ; 159.26 MHz ( period = 6.279 ns )                    ; count_lcd[7]     ; lcd_mode.01011 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.808 ns                ;
+; N/A                                     ; 159.31 MHz ( period = 6.277 ns )                    ; count_lcd[7]     ; lcd_mode.00001 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.806 ns                ;
+; N/A                                     ; 159.67 MHz ( period = 6.263 ns )                    ; delay_lcdclk[15] ; count_lcd[2]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.039 ns                ;
+; N/A                                     ; 159.67 MHz ( period = 6.263 ns )                    ; delay_lcdclk[15] ; count_lcd[0]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.039 ns                ;
+; N/A                                     ; 159.67 MHz ( period = 6.263 ns )                    ; delay_lcdclk[15] ; count_lcd[1]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.039 ns                ;
+; N/A                                     ; 159.67 MHz ( period = 6.263 ns )                    ; delay_lcdclk[15] ; count_lcd[4]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.039 ns                ;
+; N/A                                     ; 159.67 MHz ( period = 6.263 ns )                    ; delay_lcdclk[15] ; count_lcd[3]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.039 ns                ;
+; N/A                                     ; 159.67 MHz ( period = 6.263 ns )                    ; delay_lcdclk[15] ; count_lcd[5]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.039 ns                ;
+; N/A                                     ; 159.67 MHz ( period = 6.263 ns )                    ; delay_lcdclk[15] ; count_lcd[15]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.039 ns                ;
+; N/A                                     ; 159.67 MHz ( period = 6.263 ns )                    ; delay_lcdclk[15] ; count_lcd[14]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.039 ns                ;
+; N/A                                     ; 159.67 MHz ( period = 6.263 ns )                    ; delay_lcdclk[15] ; count_lcd[12]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.039 ns                ;
+; N/A                                     ; 159.67 MHz ( period = 6.263 ns )                    ; delay_lcdclk[15] ; count_lcd[10]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.039 ns                ;
+; N/A                                     ; 159.67 MHz ( period = 6.263 ns )                    ; delay_lcdclk[15] ; count_lcd[13]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.039 ns                ;
+; N/A                                     ; 159.67 MHz ( period = 6.263 ns )                    ; delay_lcdclk[15] ; count_lcd[11]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.039 ns                ;
+; N/A                                     ; 159.67 MHz ( period = 6.263 ns )                    ; delay_lcdclk[15] ; count_lcd[7]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.039 ns                ;
+; N/A                                     ; 159.67 MHz ( period = 6.263 ns )                    ; delay_lcdclk[15] ; count_lcd[6]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.039 ns                ;
+; N/A                                     ; 159.67 MHz ( period = 6.263 ns )                    ; delay_lcdclk[15] ; count_lcd[8]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.039 ns                ;
+; N/A                                     ; 159.67 MHz ( period = 6.263 ns )                    ; delay_lcdclk[15] ; count_lcd[9]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 6.039 ns                ;
+; N/A                                     ; 160.80 MHz ( period = 6.219 ns )                    ; delay_lcdclk[0]  ; count_lcd[2]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.993 ns                ;
+; N/A                                     ; 160.80 MHz ( period = 6.219 ns )                    ; delay_lcdclk[0]  ; count_lcd[0]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.993 ns                ;
+; N/A                                     ; 160.80 MHz ( period = 6.219 ns )                    ; delay_lcdclk[0]  ; count_lcd[1]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.993 ns                ;
+; N/A                                     ; 160.80 MHz ( period = 6.219 ns )                    ; delay_lcdclk[0]  ; count_lcd[4]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.993 ns                ;
+; N/A                                     ; 160.80 MHz ( period = 6.219 ns )                    ; delay_lcdclk[0]  ; count_lcd[3]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.993 ns                ;
+; N/A                                     ; 160.80 MHz ( period = 6.219 ns )                    ; delay_lcdclk[0]  ; count_lcd[5]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.993 ns                ;
+; N/A                                     ; 160.80 MHz ( period = 6.219 ns )                    ; delay_lcdclk[0]  ; count_lcd[15]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.993 ns                ;
+; N/A                                     ; 160.80 MHz ( period = 6.219 ns )                    ; delay_lcdclk[0]  ; count_lcd[14]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.993 ns                ;
+; N/A                                     ; 160.80 MHz ( period = 6.219 ns )                    ; delay_lcdclk[0]  ; count_lcd[12]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.993 ns                ;
+; N/A                                     ; 160.80 MHz ( period = 6.219 ns )                    ; delay_lcdclk[0]  ; count_lcd[10]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.993 ns                ;
+; N/A                                     ; 160.80 MHz ( period = 6.219 ns )                    ; delay_lcdclk[0]  ; count_lcd[13]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.993 ns                ;
+; N/A                                     ; 160.80 MHz ( period = 6.219 ns )                    ; delay_lcdclk[0]  ; count_lcd[11]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.993 ns                ;
+; N/A                                     ; 160.80 MHz ( period = 6.219 ns )                    ; delay_lcdclk[0]  ; count_lcd[7]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.993 ns                ;
+; N/A                                     ; 160.80 MHz ( period = 6.219 ns )                    ; delay_lcdclk[0]  ; count_lcd[6]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.993 ns                ;
+; N/A                                     ; 160.80 MHz ( period = 6.219 ns )                    ; delay_lcdclk[0]  ; count_lcd[8]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.993 ns                ;
+; N/A                                     ; 160.80 MHz ( period = 6.219 ns )                    ; delay_lcdclk[0]  ; count_lcd[9]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.993 ns                ;
+; N/A                                     ; 161.29 MHz ( period = 6.200 ns )                    ; count_lcd[15]    ; lcd_mode.00110 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.729 ns                ;
+; N/A                                     ; 161.32 MHz ( period = 6.199 ns )                    ; count_lcd[15]    ; lcd_mode.00011 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.728 ns                ;
+; N/A                                     ; 161.32 MHz ( period = 6.199 ns )                    ; count_lcd[15]    ; lcd_mode.01100 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.728 ns                ;
+; N/A                                     ; 161.32 MHz ( period = 6.199 ns )                    ; count_lcd[15]    ; lcd_mode.00101 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.728 ns                ;
+; N/A                                     ; 161.32 MHz ( period = 6.199 ns )                    ; count_lcd[15]    ; lcd_mode.00010 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.728 ns                ;
+; N/A                                     ; 161.34 MHz ( period = 6.198 ns )                    ; count_lcd[15]    ; lcd_mode.00100 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.727 ns                ;
+; N/A                                     ; 161.34 MHz ( period = 6.198 ns )                    ; count_lcd[15]    ; lcd_mode.01011 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.727 ns                ;
+; N/A                                     ; 161.37 MHz ( period = 6.197 ns )                    ; count_lcd[7]     ; count_lcd[2]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.933 ns                ;
+; N/A                                     ; 161.37 MHz ( period = 6.197 ns )                    ; count_lcd[7]     ; count_lcd[0]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.933 ns                ;
+; N/A                                     ; 161.37 MHz ( period = 6.197 ns )                    ; count_lcd[7]     ; count_lcd[1]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.933 ns                ;
+; N/A                                     ; 161.37 MHz ( period = 6.197 ns )                    ; count_lcd[7]     ; count_lcd[4]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.933 ns                ;
+; N/A                                     ; 161.37 MHz ( period = 6.197 ns )                    ; count_lcd[7]     ; count_lcd[3]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.933 ns                ;
+; N/A                                     ; 161.37 MHz ( period = 6.197 ns )                    ; count_lcd[7]     ; count_lcd[5]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.933 ns                ;
+; N/A                                     ; 161.37 MHz ( period = 6.197 ns )                    ; count_lcd[7]     ; count_lcd[15]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.933 ns                ;
+; N/A                                     ; 161.37 MHz ( period = 6.197 ns )                    ; count_lcd[7]     ; count_lcd[14]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.933 ns                ;
+; N/A                                     ; 161.37 MHz ( period = 6.197 ns )                    ; count_lcd[7]     ; count_lcd[12]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.933 ns                ;
+; N/A                                     ; 161.37 MHz ( period = 6.197 ns )                    ; count_lcd[7]     ; count_lcd[10]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.933 ns                ;
+; N/A                                     ; 161.37 MHz ( period = 6.197 ns )                    ; count_lcd[7]     ; count_lcd[13]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.933 ns                ;
+; N/A                                     ; 161.37 MHz ( period = 6.197 ns )                    ; count_lcd[7]     ; count_lcd[11]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.933 ns                ;
+; N/A                                     ; 161.37 MHz ( period = 6.197 ns )                    ; count_lcd[7]     ; count_lcd[7]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.933 ns                ;
+; N/A                                     ; 161.37 MHz ( period = 6.197 ns )                    ; count_lcd[7]     ; count_lcd[6]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.933 ns                ;
+; N/A                                     ; 161.37 MHz ( period = 6.197 ns )                    ; count_lcd[7]     ; count_lcd[8]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.933 ns                ;
+; N/A                                     ; 161.37 MHz ( period = 6.197 ns )                    ; count_lcd[7]     ; count_lcd[9]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.933 ns                ;
+; N/A                                     ; 161.39 MHz ( period = 6.196 ns )                    ; count_lcd[15]    ; lcd_mode.00001 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.725 ns                ;
+; N/A                                     ; 164.15 MHz ( period = 6.092 ns )                    ; count_lcd[12]    ; lcd_mode.01010 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.605 ns                ;
+; N/A                                     ; 164.18 MHz ( period = 6.091 ns )                    ; count_lcd[12]    ; lcd_mode.01001 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.604 ns                ;
+; N/A                                     ; 164.18 MHz ( period = 6.091 ns )                    ; count_lcd[12]    ; lcd_mode.00111 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.604 ns                ;
+; N/A                                     ; 164.18 MHz ( period = 6.091 ns )                    ; count_lcd[12]    ; lcd_mode.01000 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.604 ns                ;
+; N/A                                     ; 164.34 MHz ( period = 6.085 ns )                    ; count_lcd[11]    ; lcd_mode.00110 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.614 ns                ;
+; N/A                                     ; 164.37 MHz ( period = 6.084 ns )                    ; count_lcd[11]    ; lcd_mode.00011 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.613 ns                ;
+; N/A                                     ; 164.37 MHz ( period = 6.084 ns )                    ; count_lcd[11]    ; lcd_mode.01100 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.613 ns                ;
+; N/A                                     ; 164.37 MHz ( period = 6.084 ns )                    ; count_lcd[11]    ; lcd_mode.00101 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.613 ns                ;
+; N/A                                     ; 164.37 MHz ( period = 6.084 ns )                    ; count_lcd[11]    ; lcd_mode.00010 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.613 ns                ;
+; N/A                                     ; 164.39 MHz ( period = 6.083 ns )                    ; count_lcd[11]    ; lcd_mode.00100 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.612 ns                ;
+; N/A                                     ; 164.39 MHz ( period = 6.083 ns )                    ; count_lcd[11]    ; lcd_mode.01011 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.612 ns                ;
+; N/A                                     ; 164.45 MHz ( period = 6.081 ns )                    ; count_lcd[11]    ; lcd_mode.00001 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.610 ns                ;
+; N/A                                     ; 164.74 MHz ( period = 6.070 ns )                    ; count_lcd[10]    ; lcd_mode.00110 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.599 ns                ;
+; N/A                                     ; 164.77 MHz ( period = 6.069 ns )                    ; count_lcd[10]    ; lcd_mode.00011 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.598 ns                ;
+; N/A                                     ; 164.77 MHz ( period = 6.069 ns )                    ; count_lcd[10]    ; lcd_mode.01100 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.598 ns                ;
+; N/A                                     ; 164.77 MHz ( period = 6.069 ns )                    ; count_lcd[10]    ; lcd_mode.00101 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.598 ns                ;
+; N/A                                     ; 164.77 MHz ( period = 6.069 ns )                    ; count_lcd[10]    ; lcd_mode.00010 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.598 ns                ;
+; N/A                                     ; 164.80 MHz ( period = 6.068 ns )                    ; count_lcd[10]    ; lcd_mode.00100 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.597 ns                ;
+; N/A                                     ; 164.80 MHz ( period = 6.068 ns )                    ; count_lcd[10]    ; lcd_mode.01011 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.597 ns                ;
+; N/A                                     ; 164.85 MHz ( period = 6.066 ns )                    ; count_lcd[10]    ; lcd_mode.00001 ; lcdclk     ; lcdclk   ; None                        ; None                      ; 7.595 ns                ;
+; N/A                                     ; 165.18 MHz ( period = 6.054 ns )                    ; delay_lcdclk[19] ; count_lcd[2]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.830 ns                ;
+; N/A                                     ; 165.18 MHz ( period = 6.054 ns )                    ; delay_lcdclk[19] ; count_lcd[0]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.830 ns                ;
+; N/A                                     ; 165.18 MHz ( period = 6.054 ns )                    ; delay_lcdclk[19] ; count_lcd[1]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.830 ns                ;
+; N/A                                     ; 165.18 MHz ( period = 6.054 ns )                    ; delay_lcdclk[19] ; count_lcd[4]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.830 ns                ;
+; N/A                                     ; 165.18 MHz ( period = 6.054 ns )                    ; delay_lcdclk[19] ; count_lcd[3]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.830 ns                ;
+; N/A                                     ; 165.18 MHz ( period = 6.054 ns )                    ; delay_lcdclk[19] ; count_lcd[5]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.830 ns                ;
+; N/A                                     ; 165.18 MHz ( period = 6.054 ns )                    ; delay_lcdclk[19] ; count_lcd[15]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.830 ns                ;
+; N/A                                     ; 165.18 MHz ( period = 6.054 ns )                    ; delay_lcdclk[19] ; count_lcd[14]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.830 ns                ;
+; N/A                                     ; 165.18 MHz ( period = 6.054 ns )                    ; delay_lcdclk[19] ; count_lcd[12]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.830 ns                ;
+; N/A                                     ; 165.18 MHz ( period = 6.054 ns )                    ; delay_lcdclk[19] ; count_lcd[10]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.830 ns                ;
+; N/A                                     ; 165.18 MHz ( period = 6.054 ns )                    ; delay_lcdclk[19] ; count_lcd[13]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.830 ns                ;
+; N/A                                     ; 165.18 MHz ( period = 6.054 ns )                    ; delay_lcdclk[19] ; count_lcd[11]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.830 ns                ;
+; N/A                                     ; 165.18 MHz ( period = 6.054 ns )                    ; delay_lcdclk[19] ; count_lcd[7]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.830 ns                ;
+; N/A                                     ; 165.18 MHz ( period = 6.054 ns )                    ; delay_lcdclk[19] ; count_lcd[6]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.830 ns                ;
+; N/A                                     ; 165.18 MHz ( period = 6.054 ns )                    ; delay_lcdclk[19] ; count_lcd[8]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.830 ns                ;
+; N/A                                     ; 165.18 MHz ( period = 6.054 ns )                    ; delay_lcdclk[19] ; count_lcd[9]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.830 ns                ;
+; N/A                                     ; 165.86 MHz ( period = 6.029 ns )                    ; delay_lcdclk[12] ; count_lcd[2]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.805 ns                ;
+; N/A                                     ; 165.86 MHz ( period = 6.029 ns )                    ; delay_lcdclk[12] ; count_lcd[0]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.805 ns                ;
+; N/A                                     ; 165.86 MHz ( period = 6.029 ns )                    ; delay_lcdclk[12] ; count_lcd[1]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.805 ns                ;
+; N/A                                     ; 165.86 MHz ( period = 6.029 ns )                    ; delay_lcdclk[12] ; count_lcd[4]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.805 ns                ;
+; N/A                                     ; 165.86 MHz ( period = 6.029 ns )                    ; delay_lcdclk[12] ; count_lcd[3]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.805 ns                ;
+; N/A                                     ; 165.86 MHz ( period = 6.029 ns )                    ; delay_lcdclk[12] ; count_lcd[5]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.805 ns                ;
+; N/A                                     ; 165.86 MHz ( period = 6.029 ns )                    ; delay_lcdclk[12] ; count_lcd[15]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.805 ns                ;
+; N/A                                     ; 165.86 MHz ( period = 6.029 ns )                    ; delay_lcdclk[12] ; count_lcd[14]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.805 ns                ;
+; N/A                                     ; 165.86 MHz ( period = 6.029 ns )                    ; delay_lcdclk[12] ; count_lcd[12]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.805 ns                ;
+; N/A                                     ; 165.86 MHz ( period = 6.029 ns )                    ; delay_lcdclk[12] ; count_lcd[10]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.805 ns                ;
+; N/A                                     ; 165.86 MHz ( period = 6.029 ns )                    ; delay_lcdclk[12] ; count_lcd[13]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.805 ns                ;
+; N/A                                     ; 165.86 MHz ( period = 6.029 ns )                    ; delay_lcdclk[12] ; count_lcd[11]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.805 ns                ;
+; N/A                                     ; 165.86 MHz ( period = 6.029 ns )                    ; delay_lcdclk[12] ; count_lcd[7]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.805 ns                ;
+; N/A                                     ; 165.86 MHz ( period = 6.029 ns )                    ; delay_lcdclk[12] ; count_lcd[6]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.805 ns                ;
+; N/A                                     ; 165.86 MHz ( period = 6.029 ns )                    ; delay_lcdclk[12] ; count_lcd[8]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.805 ns                ;
+; N/A                                     ; 165.86 MHz ( period = 6.029 ns )                    ; delay_lcdclk[12] ; count_lcd[9]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.805 ns                ;
+; N/A                                     ; 166.42 MHz ( period = 6.009 ns )                    ; delay_lcdclk[5]  ; count_lcd[4]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.783 ns                ;
+; N/A                                     ; 166.42 MHz ( period = 6.009 ns )                    ; delay_lcdclk[5]  ; count_lcd[3]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.783 ns                ;
+; N/A                                     ; 166.42 MHz ( period = 6.009 ns )                    ; delay_lcdclk[5]  ; count_lcd[5]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.783 ns                ;
+; N/A                                     ; 166.42 MHz ( period = 6.009 ns )                    ; delay_lcdclk[5]  ; count_lcd[15]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.783 ns                ;
+; N/A                                     ; 166.42 MHz ( period = 6.009 ns )                    ; delay_lcdclk[5]  ; count_lcd[14]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.783 ns                ;
+; N/A                                     ; 166.42 MHz ( period = 6.009 ns )                    ; delay_lcdclk[5]  ; count_lcd[12]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.783 ns                ;
+; N/A                                     ; 166.42 MHz ( period = 6.009 ns )                    ; delay_lcdclk[5]  ; count_lcd[10]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.783 ns                ;
+; N/A                                     ; 166.42 MHz ( period = 6.009 ns )                    ; delay_lcdclk[5]  ; count_lcd[13]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.783 ns                ;
+; N/A                                     ; 166.42 MHz ( period = 6.009 ns )                    ; delay_lcdclk[5]  ; count_lcd[11]  ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.783 ns                ;
+; N/A                                     ; 166.42 MHz ( period = 6.009 ns )                    ; delay_lcdclk[5]  ; count_lcd[7]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.783 ns                ;
+; N/A                                     ; 166.42 MHz ( period = 6.009 ns )                    ; delay_lcdclk[5]  ; count_lcd[6]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.783 ns                ;
+; N/A                                     ; 166.42 MHz ( period = 6.009 ns )                    ; delay_lcdclk[5]  ; count_lcd[8]   ; lcdclk     ; lcdclk   ; None                        ; None                      ; 5.783 ns                ;
+; Timing analysis restricted to 200 rows. ; To change the limit use Settings (Assignments menu) ;                  ;                ;            ;          ;                             ;                           ;                         ;
++-----------------------------------------+-----------------------------------------------------+------------------+----------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Hold: 'lcdclk'                                                                                                                                                                 ;
++------------------------------------------+----------------+-------------+------------+----------+----------------------------+----------------------------+--------------------------+
+; Minimum Slack                            ; From           ; To          ; From Clock ; To Clock ; Required Hold Relationship ; Required Shortest P2P Time ; Actual Shortest P2P Time ;
++------------------------------------------+----------------+-------------+------------+----------+----------------------------+----------------------------+--------------------------+
+; Not operational: Clock Skew > Data Delay ; reg_h[5]       ; set_data[4] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 2.419 ns                 ;
+; Not operational: Clock Skew > Data Delay ; reg_h[5]       ; set_data[2] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 2.598 ns                 ;
+; Not operational: Clock Skew > Data Delay ; reg_h[5]       ; set_data[3] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 2.900 ns                 ;
+; Not operational: Clock Skew > Data Delay ; reg_h[5]       ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.147 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[4]   ; set_data[3] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.654 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[3]   ; set_data[3] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.680 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[1]   ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.827 ns                 ;
+; Not operational: Clock Skew > Data Delay ; reg_h[5]       ; set_data[5] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.037 ns                 ;
+; Not operational: Clock Skew > Data Delay ; reg_h[5]       ; set_data[0] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.884 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[4]   ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.911 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[3]   ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.934 ns                 ;
+; Not operational: Clock Skew > Data Delay ; reg_h[5]       ; set_data[6] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.967 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[4]   ; set_data[0] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.363 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[3]   ; set_data[0] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.386 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.01001 ; set_data[6] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 2.859 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[2]   ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.684 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[4]   ; set_data[6] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.898 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[3]   ; set_data[6] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.921 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.01010 ; set_data[2] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.182 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[0]   ; set_data[0] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.994 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[9]   ; set_data[0] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.003 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[1]   ; set_data[0] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.091 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[1]   ; set_data[2] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.129 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[5]   ; set_data[0] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.109 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.01001 ; set_data[9] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.314 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[2]   ; set_data[3] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.184 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.00111 ; set_data[9] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.326 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[8]   ; set_data[0] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.179 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[2]   ; set_data[0] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.180 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.01000 ; set_data[4] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.415 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[9]   ; set_data[3] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.222 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[2]   ; set_data[2] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.228 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[1]   ; set_data[3] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.243 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[0]   ; set_data[3] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.261 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[2]   ; set_data[4] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.259 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[2]   ; set_data[6] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.261 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.00101 ; set_data[9] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.421 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[5]   ; set_data[3] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.328 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[6]   ; set_data[0] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.337 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[13]  ; set_data[0] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.356 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[8]   ; set_data[3] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.398 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[14]  ; set_data[0] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.372 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.00010 ; set_data[9] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.546 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.01011 ; set_data[9] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.579 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[1]   ; set_data[6] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.438 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.00001 ; set_data[9] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.598 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[1]   ; set_data[4] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.478 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[3]   ; set_data[2] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.505 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[4]   ; set_data[4] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.512 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[10]  ; set_data[0] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.511 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[6]   ; set_data[3] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.556 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.00110 ; set_data[9] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.681 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[11]  ; set_data[0] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.526 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[4]   ; set_data[2] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.562 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[13]  ; set_data[3] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.575 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[14]  ; set_data[3] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.591 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.01001 ; set_data[7] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.783 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.00100 ; set_data[9] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.732 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.00111 ; set_data[7] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.795 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.01000 ; set_data[3] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.842 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.01100 ; set_data[9] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.760 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.00011 ; set_data[9] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 3.762 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[15]  ; set_data[0] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.641 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[3]   ; set_data[4] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.680 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[10]  ; set_data[3] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.730 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[11]  ; set_data[3] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.745 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[7]   ; set_data[0] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.722 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.01010 ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.016 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[15]  ; set_data[3] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.860 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.01000 ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.089 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[0]   ; set_data[2] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.911 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[12]  ; set_data[0] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.890 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.00010 ; set_data[5] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.290 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[7]   ; set_data[3] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.941 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[9]   ; set_data[2] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.982 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.00001 ; set_data[5] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.342 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[0]   ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.988 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.00001 ; set_data[3] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.214 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.00010 ; set_data[3] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.251 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.00011 ; set_data[3] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.265 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[5]   ; set_data[2] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.088 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[12]  ; set_data[3] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.109 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[9]   ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.115 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[14]  ; set_data[2] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.130 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[8]   ; set_data[2] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.158 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[15]  ; set_data[2] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.171 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[5]   ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.221 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.01010 ; set_data[5] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.621 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.01010 ; set_data[0] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.468 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[8]   ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.291 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[6]   ; set_data[2] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.316 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[13]  ; set_data[2] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.335 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.00100 ; set_data[2] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.572 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[0]   ; set_data[6] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.340 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.00011 ; set_data[2] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.602 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[0]   ; set_data[4] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.384 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[6]   ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.449 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[13]  ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.468 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.00110 ; set_data[0] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.652 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[9]   ; set_data[4] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.455 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[14]  ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.484 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[10]  ; set_data[2] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.490 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[11]  ; set_data[2] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.505 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[2]   ; set_data[5] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.679 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[9]   ; set_data[5] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.693 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[5]   ; set_data[4] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.561 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[14]  ; set_data[5] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.765 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[9]   ; set_data[6] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.584 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[10]  ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.623 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[11]  ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.638 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.00010 ; set_data[4] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.826 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[4]   ; set_data[5] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.797 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[8]   ; set_data[4] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.631 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[15]  ; set_data[5] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.806 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[3]   ; set_data[5] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.808 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[5]   ; set_data[5] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.833 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.00001 ; set_data[4] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.878 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[7]   ; set_data[2] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.701 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.01000 ; set_data[0] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.908 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[8]   ; set_data[5] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.869 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.01000 ; set_data[6] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.909 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[5]   ; set_data[6] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.690 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[15]  ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.736 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[0]   ; set_data[5] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.896 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.01010 ; set_data[4] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 4.983 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[8]   ; set_data[6] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.760 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[6]   ; set_data[4] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.789 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[13]  ; set_data[4] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.808 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[1]   ; set_data[5] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.984 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[7]   ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.834 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[14]  ; set_data[4] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.824 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[12]  ; set_data[2] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.869 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[6]   ; set_data[5] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 7.027 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[13]  ; set_data[5] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 7.046 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[6]   ; set_data[6] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.918 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[13]  ; set_data[6] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.937 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[14]  ; set_data[6] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.944 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[10]  ; set_data[4] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.963 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[11]  ; set_data[4] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.978 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[12]  ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 7.002 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[15]  ; set_data[6] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.985 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[10]  ; set_data[5] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 7.201 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[11]  ; set_data[5] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 7.216 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[15]  ; set_data[4] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 7.093 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[10]  ; set_data[6] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 7.092 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[11]  ; set_data[6] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 7.107 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.01010 ; set_data[6] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.333 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[7]   ; set_data[4] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 7.174 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.00101 ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.414 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[7]   ; set_data[5] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 7.412 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[7]   ; set_data[6] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 7.303 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.01011 ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.572 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[12]  ; set_data[4] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 7.342 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[12]  ; set_data[5] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 7.580 ns                 ;
+; Not operational: Clock Skew > Data Delay ; count_lcd[12]  ; set_data[6] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 7.471 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.00100 ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.725 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.01100 ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.753 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.00011 ; set_data[1] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.755 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.01000 ; set_data[5] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 5.985 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.01000 ; set_data[2] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.183 ns                 ;
+; Not operational: Clock Skew > Data Delay ; lcd_mode.01010 ; set_data[3] ; lcdclk     ; lcdclk   ; None                       ; None                       ; 6.383 ns                 ;
++------------------------------------------+----------------+-------------+------------+----------+----------------------------+----------------------------+--------------------------+
+
+
++--------------------------------------------------------------------------+
+; tsu                                                                      ;
++-------+--------------+------------+--------+------------------+----------+
+; Slack ; Required tsu ; Actual tsu ; From   ; To               ; To Clock ;
++-------+--------------+------------+--------+------------------+----------+
+; N/A   ; None         ; 7.349 ns   ; resetn ; count_lcd[2]     ; lcdclk   ;
+; N/A   ; None         ; 7.349 ns   ; resetn ; count_lcd[0]     ; lcdclk   ;
+; N/A   ; None         ; 7.349 ns   ; resetn ; count_lcd[1]     ; lcdclk   ;
+; N/A   ; None         ; 7.349 ns   ; resetn ; count_lcd[4]     ; lcdclk   ;
+; N/A   ; None         ; 7.349 ns   ; resetn ; count_lcd[3]     ; lcdclk   ;
+; N/A   ; None         ; 7.349 ns   ; resetn ; count_lcd[5]     ; lcdclk   ;
+; N/A   ; None         ; 7.349 ns   ; resetn ; count_lcd[15]    ; lcdclk   ;
+; N/A   ; None         ; 7.349 ns   ; resetn ; count_lcd[14]    ; lcdclk   ;
+; N/A   ; None         ; 7.349 ns   ; resetn ; count_lcd[12]    ; lcdclk   ;
+; N/A   ; None         ; 7.349 ns   ; resetn ; count_lcd[10]    ; lcdclk   ;
+; N/A   ; None         ; 7.349 ns   ; resetn ; count_lcd[13]    ; lcdclk   ;
+; N/A   ; None         ; 7.349 ns   ; resetn ; count_lcd[11]    ; lcdclk   ;
+; N/A   ; None         ; 7.349 ns   ; resetn ; count_lcd[7]     ; lcdclk   ;
+; N/A   ; None         ; 7.349 ns   ; resetn ; count_lcd[6]     ; lcdclk   ;
+; N/A   ; None         ; 7.349 ns   ; resetn ; count_lcd[8]     ; lcdclk   ;
+; N/A   ; None         ; 7.349 ns   ; resetn ; count_lcd[9]     ; lcdclk   ;
+; N/A   ; None         ; 7.206 ns   ; resetn ; delay_lcdclk[7]  ; lcdclk   ;
+; N/A   ; None         ; 7.206 ns   ; resetn ; delay_lcdclk[6]  ; lcdclk   ;
+; N/A   ; None         ; 7.206 ns   ; resetn ; delay_lcdclk[3]  ; lcdclk   ;
+; N/A   ; None         ; 7.206 ns   ; resetn ; delay_lcdclk[10] ; lcdclk   ;
+; N/A   ; None         ; 7.206 ns   ; resetn ; delay_lcdclk[8]  ; lcdclk   ;
+; N/A   ; None         ; 7.206 ns   ; resetn ; delay_lcdclk[9]  ; lcdclk   ;
+; N/A   ; None         ; 7.206 ns   ; resetn ; delay_lcdclk[2]  ; lcdclk   ;
+; N/A   ; None         ; 7.206 ns   ; resetn ; delay_lcdclk[5]  ; lcdclk   ;
+; N/A   ; None         ; 7.206 ns   ; resetn ; delay_lcdclk[4]  ; lcdclk   ;
+; N/A   ; None         ; 7.206 ns   ; resetn ; delay_lcdclk[0]  ; lcdclk   ;
+; N/A   ; None         ; 7.206 ns   ; resetn ; delay_lcdclk[1]  ; lcdclk   ;
+; N/A   ; None         ; 7.206 ns   ; resetn ; delay_lcdclk[11] ; lcdclk   ;
+; N/A   ; None         ; 6.717 ns   ; resetn ; delay_lcdclk[23] ; lcdclk   ;
+; N/A   ; None         ; 6.717 ns   ; resetn ; delay_lcdclk[16] ; lcdclk   ;
+; N/A   ; None         ; 6.717 ns   ; resetn ; delay_lcdclk[15] ; lcdclk   ;
+; N/A   ; None         ; 6.717 ns   ; resetn ; delay_lcdclk[17] ; lcdclk   ;
+; N/A   ; None         ; 6.717 ns   ; resetn ; delay_lcdclk[18] ; lcdclk   ;
+; N/A   ; None         ; 6.717 ns   ; resetn ; delay_lcdclk[19] ; lcdclk   ;
+; N/A   ; None         ; 6.717 ns   ; resetn ; delay_lcdclk[20] ; lcdclk   ;
+; N/A   ; None         ; 6.717 ns   ; resetn ; delay_lcdclk[22] ; lcdclk   ;
+; N/A   ; None         ; 6.717 ns   ; resetn ; delay_lcdclk[21] ; lcdclk   ;
+; N/A   ; None         ; 6.717 ns   ; resetn ; delay_lcdclk[14] ; lcdclk   ;
+; N/A   ; None         ; 6.717 ns   ; resetn ; delay_lcdclk[12] ; lcdclk   ;
+; N/A   ; None         ; 6.717 ns   ; resetn ; delay_lcdclk[13] ; lcdclk   ;
+; N/A   ; None         ; 5.435 ns   ; resetn ; lcd_en~reg0      ; lcdclk   ;
+; N/A   ; None         ; 5.168 ns   ; resetn ; reg_h[5]         ; lcdclk   ;
+; N/A   ; None         ; 4.035 ns   ; resetn ; lcd_mode.00001   ; lcdclk   ;
+; N/A   ; None         ; 3.931 ns   ; resetn ; lcd_mode.01001   ; lcdclk   ;
+; N/A   ; None         ; 3.931 ns   ; resetn ; lcd_mode.00111   ; lcdclk   ;
+; N/A   ; None         ; 3.931 ns   ; resetn ; lcd_mode.01000   ; lcdclk   ;
+; N/A   ; None         ; 3.931 ns   ; resetn ; lcd_mode.01010   ; lcdclk   ;
+; N/A   ; None         ; 3.912 ns   ; resetn ; lcd_mode.00011   ; lcdclk   ;
+; N/A   ; None         ; 3.912 ns   ; resetn ; lcd_mode.00100   ; lcdclk   ;
+; N/A   ; None         ; 3.912 ns   ; resetn ; lcd_mode.01100   ; lcdclk   ;
+; N/A   ; None         ; 3.912 ns   ; resetn ; lcd_mode.00101   ; lcdclk   ;
+; N/A   ; None         ; 3.912 ns   ; resetn ; lcd_mode.01011   ; lcdclk   ;
+; N/A   ; None         ; 3.912 ns   ; resetn ; lcd_mode.00010   ; lcdclk   ;
+; N/A   ; None         ; 3.912 ns   ; resetn ; lcd_mode.00110   ; lcdclk   ;
++-------+--------------+------------+--------+------------------+----------+
+
+
++----------------------------------------------------------------------------+
+; tco                                                                        ;
++-------+--------------+------------+-------------+-------------+------------+
+; Slack ; Required tco ; Actual tco ; From        ; To          ; From Clock ;
++-------+--------------+------------+-------------+-------------+------------+
+; N/A   ; None         ; 24.921 ns  ; set_data[2] ; lcd_data[2] ; lcdclk     ;
+; N/A   ; None         ; 24.784 ns  ; set_data[3] ; lcd_data[3] ; lcdclk     ;
+; N/A   ; None         ; 23.765 ns  ; set_data[0] ; lcd_data[0] ; lcdclk     ;
+; N/A   ; None         ; 23.674 ns  ; set_data[1] ; lcd_data[1] ; lcdclk     ;
+; N/A   ; None         ; 23.598 ns  ; set_data[7] ; lcd_data[7] ; lcdclk     ;
+; N/A   ; None         ; 23.444 ns  ; set_data[4] ; lcd_data[4] ; lcdclk     ;
+; N/A   ; None         ; 23.379 ns  ; set_data[6] ; lcd_data[6] ; lcdclk     ;
+; N/A   ; None         ; 23.357 ns  ; set_data[9] ; lcd_rs      ; lcdclk     ;
+; N/A   ; None         ; 23.243 ns  ; set_data[5] ; lcd_data[5] ; lcdclk     ;
+; N/A   ; None         ; 10.198 ns  ; lcd_en~reg0 ; lcd_en      ; lcdclk     ;
++-------+--------------+------------+-------------+-------------+------------+
+
+
++--------------------------------------------------------------------------------+
+; th                                                                             ;
++---------------+-------------+-----------+--------+------------------+----------+
+; Minimum Slack ; Required th ; Actual th ; From   ; To               ; To Clock ;
++---------------+-------------+-----------+--------+------------------+----------+
+; N/A           ; None        ; -3.646 ns ; resetn ; lcd_mode.00011   ; lcdclk   ;
+; N/A           ; None        ; -3.646 ns ; resetn ; lcd_mode.00100   ; lcdclk   ;
+; N/A           ; None        ; -3.646 ns ; resetn ; lcd_mode.01100   ; lcdclk   ;
+; N/A           ; None        ; -3.646 ns ; resetn ; lcd_mode.00101   ; lcdclk   ;
+; N/A           ; None        ; -3.646 ns ; resetn ; lcd_mode.01011   ; lcdclk   ;
+; N/A           ; None        ; -3.646 ns ; resetn ; lcd_mode.00010   ; lcdclk   ;
+; N/A           ; None        ; -3.646 ns ; resetn ; lcd_mode.00110   ; lcdclk   ;
+; N/A           ; None        ; -3.665 ns ; resetn ; lcd_mode.01001   ; lcdclk   ;
+; N/A           ; None        ; -3.665 ns ; resetn ; lcd_mode.00111   ; lcdclk   ;
+; N/A           ; None        ; -3.665 ns ; resetn ; lcd_mode.01000   ; lcdclk   ;
+; N/A           ; None        ; -3.665 ns ; resetn ; lcd_mode.01010   ; lcdclk   ;
+; N/A           ; None        ; -3.769 ns ; resetn ; lcd_mode.00001   ; lcdclk   ;
+; N/A           ; None        ; -4.887 ns ; resetn ; count_lcd[2]     ; lcdclk   ;
+; N/A           ; None        ; -4.887 ns ; resetn ; count_lcd[1]     ; lcdclk   ;
+; N/A           ; None        ; -4.888 ns ; resetn ; count_lcd[0]     ; lcdclk   ;
+; N/A           ; None        ; -4.902 ns ; resetn ; reg_h[5]         ; lcdclk   ;
+; N/A           ; None        ; -5.169 ns ; resetn ; lcd_en~reg0      ; lcdclk   ;
+; N/A           ; None        ; -6.451 ns ; resetn ; delay_lcdclk[23] ; lcdclk   ;
+; N/A           ; None        ; -6.451 ns ; resetn ; delay_lcdclk[16] ; lcdclk   ;
+; N/A           ; None        ; -6.451 ns ; resetn ; delay_lcdclk[15] ; lcdclk   ;
+; N/A           ; None        ; -6.451 ns ; resetn ; delay_lcdclk[17] ; lcdclk   ;
+; N/A           ; None        ; -6.451 ns ; resetn ; delay_lcdclk[18] ; lcdclk   ;
+; N/A           ; None        ; -6.451 ns ; resetn ; delay_lcdclk[19] ; lcdclk   ;
+; N/A           ; None        ; -6.451 ns ; resetn ; delay_lcdclk[20] ; lcdclk   ;
+; N/A           ; None        ; -6.451 ns ; resetn ; delay_lcdclk[22] ; lcdclk   ;
+; N/A           ; None        ; -6.451 ns ; resetn ; delay_lcdclk[21] ; lcdclk   ;
+; N/A           ; None        ; -6.451 ns ; resetn ; delay_lcdclk[14] ; lcdclk   ;
+; N/A           ; None        ; -6.451 ns ; resetn ; delay_lcdclk[12] ; lcdclk   ;
+; N/A           ; None        ; -6.451 ns ; resetn ; delay_lcdclk[13] ; lcdclk   ;
+; N/A           ; None        ; -6.725 ns ; resetn ; count_lcd[4]     ; lcdclk   ;
+; N/A           ; None        ; -6.725 ns ; resetn ; count_lcd[3]     ; lcdclk   ;
+; N/A           ; None        ; -6.725 ns ; resetn ; count_lcd[5]     ; lcdclk   ;
+; N/A           ; None        ; -6.725 ns ; resetn ; count_lcd[15]    ; lcdclk   ;
+; N/A           ; None        ; -6.725 ns ; resetn ; count_lcd[14]    ; lcdclk   ;
+; N/A           ; None        ; -6.725 ns ; resetn ; count_lcd[12]    ; lcdclk   ;
+; N/A           ; None        ; -6.725 ns ; resetn ; count_lcd[10]    ; lcdclk   ;
+; N/A           ; None        ; -6.725 ns ; resetn ; count_lcd[13]    ; lcdclk   ;
+; N/A           ; None        ; -6.725 ns ; resetn ; count_lcd[11]    ; lcdclk   ;
+; N/A           ; None        ; -6.725 ns ; resetn ; count_lcd[7]     ; lcdclk   ;
+; N/A           ; None        ; -6.725 ns ; resetn ; count_lcd[6]     ; lcdclk   ;
+; N/A           ; None        ; -6.725 ns ; resetn ; count_lcd[8]     ; lcdclk   ;
+; N/A           ; None        ; -6.725 ns ; resetn ; count_lcd[9]     ; lcdclk   ;
+; N/A           ; None        ; -6.940 ns ; resetn ; delay_lcdclk[7]  ; lcdclk   ;
+; N/A           ; None        ; -6.940 ns ; resetn ; delay_lcdclk[6]  ; lcdclk   ;
+; N/A           ; None        ; -6.940 ns ; resetn ; delay_lcdclk[3]  ; lcdclk   ;
+; N/A           ; None        ; -6.940 ns ; resetn ; delay_lcdclk[10] ; lcdclk   ;
+; N/A           ; None        ; -6.940 ns ; resetn ; delay_lcdclk[8]  ; lcdclk   ;
+; N/A           ; None        ; -6.940 ns ; resetn ; delay_lcdclk[9]  ; lcdclk   ;
+; N/A           ; None        ; -6.940 ns ; resetn ; delay_lcdclk[2]  ; lcdclk   ;
+; N/A           ; None        ; -6.940 ns ; resetn ; delay_lcdclk[5]  ; lcdclk   ;
+; N/A           ; None        ; -6.940 ns ; resetn ; delay_lcdclk[4]  ; lcdclk   ;
+; N/A           ; None        ; -6.940 ns ; resetn ; delay_lcdclk[0]  ; lcdclk   ;
+; N/A           ; None        ; -6.940 ns ; resetn ; delay_lcdclk[1]  ; lcdclk   ;
+; N/A           ; None        ; -6.940 ns ; resetn ; delay_lcdclk[11] ; lcdclk   ;
++---------------+-------------+-----------+--------+------------------+----------+
+
+
++--------------------------+
+; Timing Analyzer Messages ;
++--------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Classic Timing Analyzer
+    Info: Version 7.1 Build 156 04/30/2007 SJ Full Version
+    Info: Processing started: Sat Sep 08 13:34:45 2007
+Info: Command: quartus_tan --read_settings_files=off --write_settings_files=off st2soc -c st2soc --timing_analysis_only
+Warning: Timing Analysis is analyzing one or more combinational loops as latches
+    Warning: Node "set_data[9]" is a latch
+    Warning: Node "set_data[0]" is a latch
+    Warning: Node "set_data[1]" is a latch
+    Warning: Node "set_data[2]" is a latch
+    Warning: Node "set_data[3]" is a latch
+    Warning: Node "set_data[4]" is a latch
+    Warning: Node "set_data[5]" is a latch
+    Warning: Node "set_data[6]" is a latch
+    Warning: Node "set_data[7]" is a latch
+Warning: Found pins functioning as undefined clocks and/or memory enables
+    Info: Assuming node "lcdclk" is an undefined clock
+Warning: Found 79 node(s) in clock paths which may be acting as ripple and/or gated clocks -- node(s) analyzed as buffer(s) resulting in clock skew
+    Info: Detected gated clock "Selector35~170" as buffer
+    Info: Detected gated clock "Selector35~169" as buffer
+    Info: Detected gated clock "Selector13~42" as buffer
+    Info: Detected gated clock "WideNor2" as buffer
+    Info: Detected gated clock "WideNor2~79" as buffer
+    Info: Detected gated clock "Equal31~93" as buffer
+    Info: Detected gated clock "WideNor2~78" as buffer
+    Info: Detected gated clock "WideNor2~77" as buffer
+    Info: Detected gated clock "Equal42~92" as buffer
+    Info: Detected gated clock "Selector25~127" as buffer
+    Info: Detected gated clock "WideNor2~75" as buffer
+    Info: Detected gated clock "Equal38~92" as buffer
+    Info: Detected gated clock "Selector34~211" as buffer
+    Info: Detected gated clock "Equal30~98" as buffer
+    Info: Detected gated clock "Equal37~100" as buffer
+    Info: Detected ripple clock "lcd_mode.01010" as buffer
+    Info: Detected gated clock "Selector13~41" as buffer
+    Info: Detected gated clock "WideNor1~65" as buffer
+    Info: Detected gated clock "WideNor1~64" as buffer
+    Info: Detected gated clock "WideNor1~63" as buffer
+    Info: Detected gated clock "Equal15~99" as buffer
+    Info: Detected gated clock "Equal14~96" as buffer
+    Info: Detected gated clock "Selector41~84" as buffer
+    Info: Detected gated clock "Equal15~98" as buffer
+    Info: Detected gated clock "Selector31~191" as buffer
+    Info: Detected gated clock "Equal18~99" as buffer
+    Info: Detected gated clock "Equal20~88" as buffer
+    Info: Detected gated clock "WideNor1~62" as buffer
+    Info: Detected gated clock "Equal24~93" as buffer
+    Info: Detected gated clock "WideNor1~61" as buffer
+    Info: Detected gated clock "Equal22~91" as buffer
+    Info: Detected ripple clock "lcd_mode.01000" as buffer
+    Info: Detected gated clock "always2~272" as buffer
+    Info: Detected ripple clock "lcd_mode.00110" as buffer
+    Info: Detected gated clock "Selector28~171" as buffer
+    Info: Detected ripple clock "lcd_mode.00010" as buffer
+    Info: Detected ripple clock "lcd_mode.00001" as buffer
+    Info: Detected gated clock "set_data~4" as buffer
+    Info: Detected ripple clock "lcd_mode.00111" as buffer
+    Info: Detected ripple clock "lcd_mode.01001" as buffer
+    Info: Detected gated clock "Selector34~210" as buffer
+    Info: Detected ripple clock "lcd_mode.01011" as buffer
+    Info: Detected gated clock "Equal7~91" as buffer
+    Info: Detected ripple clock "lcd_mode.00101" as buffer
+    Info: Detected ripple clock "lcd_mode.01100" as buffer
+    Info: Detected gated clock "Selector31~190" as buffer
+    Info: Detected ripple clock "lcd_mode.00100" as buffer
+    Info: Detected gated clock "Equal7~92" as buffer
+    Info: Detected gated clock "Equal5~91" as buffer
+    Info: Detected gated clock "Equal14~95" as buffer
+    Info: Detected gated clock "Equal29~102" as buffer
+    Info: Detected gated clock "Equal3~163" as buffer
+    Info: Detected ripple clock "count_lcd[9]" as buffer
+    Info: Detected ripple clock "count_lcd[8]" as buffer
+    Info: Detected ripple clock "count_lcd[6]" as buffer
+    Info: Detected ripple clock "count_lcd[7]" as buffer
+    Info: Detected ripple clock "count_lcd[11]" as buffer
+    Info: Detected ripple clock "count_lcd[13]" as buffer
+    Info: Detected ripple clock "count_lcd[10]" as buffer
+    Info: Detected ripple clock "count_lcd[12]" as buffer
+    Info: Detected ripple clock "count_lcd[14]" as buffer
+    Info: Detected ripple clock "count_lcd[15]" as buffer
+    Info: Detected gated clock "Equal3~165" as buffer
+    Info: Detected gated clock "Equal4~94" as buffer
+    Info: Detected gated clock "Equal3~159" as buffer
+    Info: Detected gated clock "Equal3~160" as buffer
+    Info: Detected gated clock "Equal3~161" as buffer
+    Info: Detected ripple clock "count_lcd[5]" as buffer
+    Info: Detected gated clock "Equal10~92" as buffer
+    Info: Detected gated clock "Equal9~89" as buffer
+    Info: Detected ripple clock "count_lcd[3]" as buffer
+    Info: Detected ripple clock "count_lcd[4]" as buffer
+    Info: Detected gated clock "Equal3~162" as buffer
+    Info: Detected ripple clock "count_lcd[1]" as buffer
+    Info: Detected ripple clock "count_lcd[0]" as buffer
+    Info: Detected ripple clock "count_lcd[2]" as buffer
+    Info: Detected gated clock "Equal3~164" as buffer
+    Info: Detected gated clock "Equal5~92" as buffer
+    Info: Detected ripple clock "lcd_mode.00011" as buffer
+Info: Clock "lcdclk" has Internal fmax of 154.66 MHz between source register "delay_lcdclk[17]" and destination register "count_lcd[2]" (period= 6.466 ns)
+    Info: + Longest register to register delay is 6.242 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LCFF_X20_Y21_N11; Fanout = 3; REG Node = 'delay_lcdclk[17]'
+        Info: 2: + IC(1.117 ns) + CELL(0.370 ns) = 1.487 ns; Loc. = LCCOMB_X21_Y21_N24; Fanout = 1; COMB Node = 'Equal1~200'
+        Info: 3: + IC(0.390 ns) + CELL(0.615 ns) = 2.492 ns; Loc. = LCCOMB_X21_Y21_N22; Fanout = 2; COMB Node = 'Equal1~202'
+        Info: 4: + IC(0.381 ns) + CELL(0.206 ns) = 3.079 ns; Loc. = LCCOMB_X21_Y21_N4; Fanout = 2; COMB Node = 'Equal1~204'
+        Info: 5: + IC(0.385 ns) + CELL(0.370 ns) = 3.834 ns; Loc. = LCCOMB_X21_Y21_N26; Fanout = 2; COMB Node = 'Equal1~205'
+        Info: 6: + IC(0.375 ns) + CELL(0.206 ns) = 4.415 ns; Loc. = LCCOMB_X21_Y21_N0; Fanout = 16; COMB Node = 'count_lcd[12]~740'
+        Info: 7: + IC(0.972 ns) + CELL(0.855 ns) = 6.242 ns; Loc. = LCFF_X25_Y22_N5; Fanout = 20; REG Node = 'count_lcd[2]'
+        Info: Total cell delay = 2.622 ns ( 42.01 % )
+        Info: Total interconnect delay = 3.620 ns ( 57.99 % )
+    Info: - Smallest clock skew is 0.040 ns
+        Info: + Shortest clock path from clock "lcdclk" to destination register is 3.235 ns
+            Info: 1: + IC(0.000 ns) + CELL(1.100 ns) = 1.100 ns; Loc. = PIN_N1; Fanout = 29; CLK Node = 'lcdclk'
+            Info: 2: + IC(1.469 ns) + CELL(0.666 ns) = 3.235 ns; Loc. = LCFF_X25_Y22_N5; Fanout = 20; REG Node = 'count_lcd[2]'
+            Info: Total cell delay = 1.766 ns ( 54.59 % )
+            Info: Total interconnect delay = 1.469 ns ( 45.41 % )
+        Info: - Longest clock path from clock "lcdclk" to source register is 3.195 ns
+            Info: 1: + IC(0.000 ns) + CELL(1.100 ns) = 1.100 ns; Loc. = PIN_N1; Fanout = 29; CLK Node = 'lcdclk'
+            Info: 2: + IC(0.134 ns) + CELL(0.000 ns) = 1.234 ns; Loc. = CLKCTRL_G2; Fanout = 26; COMB Node = 'lcdclk~clkctrl'
+            Info: 3: + IC(1.295 ns) + CELL(0.666 ns) = 3.195 ns; Loc. = LCFF_X20_Y21_N11; Fanout = 3; REG Node = 'delay_lcdclk[17]'
+            Info: Total cell delay = 1.766 ns ( 55.27 % )
+            Info: Total interconnect delay = 1.429 ns ( 44.73 % )
+    Info: + Micro clock to output delay of source is 0.304 ns
+    Info: + Micro setup delay of destination is -0.040 ns
+Warning: Circuit may not operate. Detected 161 non-operational path(s) clocked by clock "lcdclk" with clock skew larger than data delay. See Compilation Report for details.
+Info: Found hold time violation between source  pin or register "reg_h[5]" and destination pin or register "set_data[4]" for clock "lcdclk" (Hold time is 10.813 ns)
+    Info: + Largest clock skew is 13.536 ns
+        Info: + Longest clock path from clock "lcdclk" to destination register is 16.736 ns
+            Info: 1: + IC(0.000 ns) + CELL(1.100 ns) = 1.100 ns; Loc. = PIN_N1; Fanout = 29; CLK Node = 'lcdclk'
+            Info: 2: + IC(1.469 ns) + CELL(0.970 ns) = 3.539 ns; Loc. = LCFF_X25_Y22_N25; Fanout = 3; REG Node = 'count_lcd[12]'
+            Info: 3: + IC(1.128 ns) + CELL(0.534 ns) = 5.201 ns; Loc. = LCCOMB_X24_Y22_N4; Fanout = 2; COMB Node = 'Equal3~160'
+            Info: 4: + IC(0.391 ns) + CELL(0.370 ns) = 5.962 ns; Loc. = LCCOMB_X24_Y22_N22; Fanout = 16; COMB Node = 'Equal3~162'
+            Info: 5: + IC(0.722 ns) + CELL(0.206 ns) = 6.890 ns; Loc. = LCCOMB_X23_Y22_N16; Fanout = 6; COMB Node = 'Equal7~91'
+            Info: 6: + IC(1.108 ns) + CELL(0.370 ns) = 8.368 ns; Loc. = LCCOMB_X24_Y23_N28; Fanout = 1; COMB Node = 'WideNor2~77'
+            Info: 7: + IC(1.113 ns) + CELL(0.370 ns) = 9.851 ns; Loc. = LCCOMB_X24_Y22_N26; Fanout = 1; COMB Node = 'WideNor2~78'
+            Info: 8: + IC(0.365 ns) + CELL(0.206 ns) = 10.422 ns; Loc. = LCCOMB_X24_Y22_N10; Fanout = 2; COMB Node = 'WideNor2~79'
+            Info: 9: + IC(1.140 ns) + CELL(0.370 ns) = 11.932 ns; Loc. = LCCOMB_X23_Y24_N26; Fanout = 2; COMB Node = 'WideNor2'
+            Info: 10: + IC(0.361 ns) + CELL(0.206 ns) = 12.499 ns; Loc. = LCCOMB_X23_Y24_N12; Fanout = 1; COMB Node = 'Selector35~170'
+            Info: 11: + IC(2.233 ns) + CELL(0.000 ns) = 14.732 ns; Loc. = CLKCTRL_G3; Fanout = 8; COMB Node = 'Selector35~170clkctrl'
+            Info: 12: + IC(1.798 ns) + CELL(0.206 ns) = 16.736 ns; Loc. = LCCOMB_X23_Y22_N12; Fanout = 1; REG Node = 'set_data[4]'
+            Info: Total cell delay = 4.908 ns ( 29.33 % )
+            Info: Total interconnect delay = 11.828 ns ( 70.67 % )
+        Info: - Shortest clock path from clock "lcdclk" to source register is 3.200 ns
+            Info: 1: + IC(0.000 ns) + CELL(1.100 ns) = 1.100 ns; Loc. = PIN_N1; Fanout = 29; CLK Node = 'lcdclk'
+            Info: 2: + IC(0.134 ns) + CELL(0.000 ns) = 1.234 ns; Loc. = CLKCTRL_G2; Fanout = 26; COMB Node = 'lcdclk~clkctrl'
+            Info: 3: + IC(1.300 ns) + CELL(0.666 ns) = 3.200 ns; Loc. = LCFF_X22_Y22_N9; Fanout = 4; REG Node = 'reg_h[5]'
+            Info: Total cell delay = 1.766 ns ( 55.19 % )
+            Info: Total interconnect delay = 1.434 ns ( 44.81 % )
+    Info: - Micro clock to output delay of source is 0.304 ns
+    Info: - Shortest register to register delay is 2.419 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LCFF_X22_Y22_N9; Fanout = 4; REG Node = 'reg_h[5]'
+        Info: 2: + IC(0.777 ns) + CELL(0.651 ns) = 1.428 ns; Loc. = LCCOMB_X23_Y22_N26; Fanout = 1; COMB Node = 'Selector25~131'
+        Info: 3: + IC(0.367 ns) + CELL(0.624 ns) = 2.419 ns; Loc. = LCCOMB_X23_Y22_N12; Fanout = 1; REG Node = 'set_data[4]'
+        Info: Total cell delay = 1.275 ns ( 52.71 % )
+        Info: Total interconnect delay = 1.144 ns ( 47.29 % )
+    Info: + Micro hold delay of destination is 0.000 ns
+    Info: Delay path is controlled by inverted clocks -- if clock duty cycle is 50%, fmax is divided by two
+Info: tsu for register "count_lcd[2]" (data pin = "resetn", clock pin = "lcdclk") is 7.349 ns
+    Info: + Longest pin to register delay is 10.624 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.915 ns) = 0.915 ns; Loc. = PIN_P6; Fanout = 29; PIN Node = 'resetn'
+        Info: 2: + IC(7.460 ns) + CELL(0.370 ns) = 8.745 ns; Loc. = LCCOMB_X24_Y24_N18; Fanout = 16; COMB Node = 'count_lcd[12]~739'
+        Info: 3: + IC(1.057 ns) + CELL(0.822 ns) = 10.624 ns; Loc. = LCFF_X25_Y22_N5; Fanout = 20; REG Node = 'count_lcd[2]'
+        Info: Total cell delay = 2.107 ns ( 19.83 % )
+        Info: Total interconnect delay = 8.517 ns ( 80.17 % )
+    Info: + Micro setup delay of destination is -0.040 ns
+    Info: - Shortest clock path from clock "lcdclk" to destination register is 3.235 ns
+        Info: 1: + IC(0.000 ns) + CELL(1.100 ns) = 1.100 ns; Loc. = PIN_N1; Fanout = 29; CLK Node = 'lcdclk'
+        Info: 2: + IC(1.469 ns) + CELL(0.666 ns) = 3.235 ns; Loc. = LCFF_X25_Y22_N5; Fanout = 20; REG Node = 'count_lcd[2]'
+        Info: Total cell delay = 1.766 ns ( 54.59 % )
+        Info: Total interconnect delay = 1.469 ns ( 45.41 % )
+Info: tco from clock "lcdclk" to destination pin "lcd_data[2]" through register "set_data[2]" is 24.921 ns
+    Info: + Longest clock path from clock "lcdclk" to source register is 16.758 ns
+        Info: 1: + IC(0.000 ns) + CELL(1.100 ns) = 1.100 ns; Loc. = PIN_N1; Fanout = 29; CLK Node = 'lcdclk'
+        Info: 2: + IC(1.469 ns) + CELL(0.970 ns) = 3.539 ns; Loc. = LCFF_X25_Y22_N25; Fanout = 3; REG Node = 'count_lcd[12]'
+        Info: 3: + IC(1.128 ns) + CELL(0.534 ns) = 5.201 ns; Loc. = LCCOMB_X24_Y22_N4; Fanout = 2; COMB Node = 'Equal3~160'
+        Info: 4: + IC(0.391 ns) + CELL(0.370 ns) = 5.962 ns; Loc. = LCCOMB_X24_Y22_N22; Fanout = 16; COMB Node = 'Equal3~162'
+        Info: 5: + IC(0.722 ns) + CELL(0.206 ns) = 6.890 ns; Loc. = LCCOMB_X23_Y22_N16; Fanout = 6; COMB Node = 'Equal7~91'
+        Info: 6: + IC(1.108 ns) + CELL(0.370 ns) = 8.368 ns; Loc. = LCCOMB_X24_Y23_N28; Fanout = 1; COMB Node = 'WideNor2~77'
+        Info: 7: + IC(1.113 ns) + CELL(0.370 ns) = 9.851 ns; Loc. = LCCOMB_X24_Y22_N26; Fanout = 1; COMB Node = 'WideNor2~78'
+        Info: 8: + IC(0.365 ns) + CELL(0.206 ns) = 10.422 ns; Loc. = LCCOMB_X24_Y22_N10; Fanout = 2; COMB Node = 'WideNor2~79'
+        Info: 9: + IC(1.140 ns) + CELL(0.370 ns) = 11.932 ns; Loc. = LCCOMB_X23_Y24_N26; Fanout = 2; COMB Node = 'WideNor2'
+        Info: 10: + IC(0.361 ns) + CELL(0.206 ns) = 12.499 ns; Loc. = LCCOMB_X23_Y24_N12; Fanout = 1; COMB Node = 'Selector35~170'
+        Info: 11: + IC(2.233 ns) + CELL(0.000 ns) = 14.732 ns; Loc. = CLKCTRL_G3; Fanout = 8; COMB Node = 'Selector35~170clkctrl'
+        Info: 12: + IC(1.820 ns) + CELL(0.206 ns) = 16.758 ns; Loc. = LCCOMB_X22_Y22_N30; Fanout = 1; REG Node = 'set_data[2]'
+        Info: Total cell delay = 4.908 ns ( 29.29 % )
+        Info: Total interconnect delay = 11.850 ns ( 70.71 % )
+    Info: + Micro clock to output delay of source is 0.000 ns
+    Info: + Longest register to pin delay is 8.163 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LCCOMB_X22_Y22_N30; Fanout = 1; REG Node = 'set_data[2]'
+        Info: 2: + IC(4.937 ns) + CELL(3.226 ns) = 8.163 ns; Loc. = PIN_AC5; Fanout = 0; PIN Node = 'lcd_data[2]'
+        Info: Total cell delay = 3.226 ns ( 39.52 % )
+        Info: Total interconnect delay = 4.937 ns ( 60.48 % )
+Info: th for register "lcd_mode.00011" (data pin = "resetn", clock pin = "lcdclk") is -3.646 ns
+    Info: + Longest clock path from clock "lcdclk" to destination register is 5.028 ns
+        Info: 1: + IC(0.000 ns) + CELL(1.100 ns) = 1.100 ns; Loc. = PIN_N1; Fanout = 29; CLK Node = 'lcdclk'
+        Info: 2: + IC(3.262 ns) + CELL(0.666 ns) = 5.028 ns; Loc. = LCFF_X24_Y24_N21; Fanout = 3; REG Node = 'lcd_mode.00011'
+        Info: Total cell delay = 1.766 ns ( 35.12 % )
+        Info: Total interconnect delay = 3.262 ns ( 64.88 % )
+    Info: + Micro hold delay of destination is 0.306 ns
+    Info: - Shortest pin to register delay is 8.980 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.915 ns) = 0.915 ns; Loc. = PIN_P6; Fanout = 29; PIN Node = 'resetn'
+        Info: 2: + IC(7.405 ns) + CELL(0.660 ns) = 8.980 ns; Loc. = LCFF_X24_Y24_N21; Fanout = 3; REG Node = 'lcd_mode.00011'
+        Info: Total cell delay = 1.575 ns ( 17.54 % )
+        Info: Total interconnect delay = 7.405 ns ( 82.46 % )
+Info: Quartus II Classic Timing Analyzer was successful. 0 errors, 13 warnings
+    Info: Allocated 116 megabytes of memory during processing
+    Info: Processing ended: Sat Sep 08 13:34:47 2007
+    Info: Elapsed time: 00:00:02
+
+
