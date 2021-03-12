@@ -1,0 +1,325 @@
+module clock(clk_in, resetn, segdata, stop);
+
+	input clk_in;
+	input resetn;
+	input stop;                   //add to control stop_tmp signal
+	output[31:0] segdata;
+	reg temp_clk;
+	reg onesec_clk;
+	reg tensec_clk;
+	reg onemin_clk;
+	reg tenmin_clk;
+	reg hour_clk;
+	reg stop_tmp                // this control the ~~_clk signal 
+	
+	reg[3:0] onesec_cnt;
+	reg[3:0] tensec_cnt;
+	reg[3:0] onemin_cnt;
+	reg[3:0] tenmin_cnt;
+	reg[3:0] hour_cnt;
+	reg[31:0] segout_tmp;
+	reg[32:0] cnt;
+	reg clk_out;
+	
+	assign segdata =segout_tmp;
+	
+	initial
+	begin
+			stop_tmp = 0;              //add for initializing of stop signal
+			temp_clk = 0;
+			onesec_clk = 0;
+			tensec_clk = 0;
+			onemin_clk = 0;
+			tenmin_clk = 0;
+			hour_clk = 0;
+			onesec_cnt = 0;
+			tensec_cnt = 0;
+			onemin_cnt = 0;
+			tenmin_cnt = 0;
+			hour_cnt = 0;
+			segout_tmp = 0;
+			cnt = 0;
+			clk_out = 0;			
+	end
+	 
+	always@(posedge stop)                  // stop_temp can control the pause(1)&resume(0) operation 
+	begin
+		stop_temp=~stop_temp
+	end
+
+	
+	always@(posedge clk_in)
+	begin
+		if(resetn == 0)
+		begin
+			cnt = 0;
+			clk_out = 0;
+		end
+		else if (cnt < 12499999)
+		begin
+			cnt = cnt+1;
+		end
+		else if(cnt == 12499999)
+		begin
+			cnt = 0;
+			clk_out = ~clk_out;
+		end
+		if(stop_temp == 0)                     // if stop_temp is one, the time checking operation don't do
+		begin
+			onesec_clk =clk_out;
+		end
+		
+	end
+	
+	always@(posedge onesec_clk)
+	begin
+		if(resetn ==0)
+			onesec_cnt <= 4'b0001;
+		else
+		begin
+			case(onesec_cnt)
+				4'b0000: begin
+								onesec_cnt <= 4'b0001;
+								tensec_clk <=1'b1;
+							end
+				4'b0001: begin
+								onesec_cnt <= 4'b0010;
+								tensec_clk <=1'b0;
+							end
+				4'b0010: begin
+								onesec_cnt <= 4'b0011;
+							end
+				4'b0011: begin
+								onesec_cnt <= 4'b0100;
+							end
+				4'b0100: begin
+								onesec_cnt <= 4'b0101;
+							end
+				4'b0110: begin
+								onesec_cnt <= 4'b0111;
+							end
+				4'b0111: begin
+								onesec_cnt <= 4'b1000;
+							end
+				4'b1000: begin
+								onesec_cnt <= 4'b1001;
+							end			
+				4'b1001: begin
+								onesec_cnt <= 4'b0000;
+							end
+				default: onesec_cnt <= 4'b0000;						
+			endcase
+		end	
+	end
+	
+	always@(posedge onesec_clk)
+	begin
+		if(resetn == 0)
+			segout_tmp[3:0] <= 4'h0;
+		else
+		begin
+			case(onesec_cnt)
+				4'b0000: segout_tmp[3:0] <= 4'h0;
+				4'b0001: segout_tmp[3:0] <= 4'h1;
+				4'b0010: segout_tmp[3:0] <= 4'h2;
+				4'b0011: segout_tmp[3:0] <= 4'h3;
+				4'b0100: segout_tmp[3:0] <= 4'h4;
+				4'b0101: segout_tmp[3:0] <= 4'h5;
+				4'b0110: segout_tmp[3:0] <= 4'h6;
+				4'b0111: segout_tmp[3:0] <= 4'h7;
+				4'b1000: segout_tmp[3:0] <= 4'h8;
+				4'b1001: segout_tmp[3:0] <= 4'h9;
+				default: segout_tmp[3:0] <= 4'h0;
+			endcase
+		end
+	end
+	
+	always@(posedge tensec_clk)
+	begin
+		if(resetn==0)
+			tensec_cnt <= 4'b0001;
+		else
+		begin
+			case(tensec_cnt)
+			4'b0000:
+						begin
+						tensec_cnt <= 4'b0001;
+						onemin_clk <= 1'b1;
+						end
+			4'b0001:
+						begin
+							tensec_cnt <= 4'b0010;
+							onemin_clk <= 1'b0;
+						end
+			4'b0010: tensec_cnt <= 4'b0011;
+			4'b0011:	tensec_cnt <= 4'b0100;
+			4'b0100: tensec_cnt <= 4'b0101;
+			4'b0101: tensec_cnt <= 4'b0000;
+			default: tensec_cnt <= 4'b0000;
+			endcase
+		end
+	end
+	
+	always@(posedge tensec_clk)
+	begin
+		if(resetn ==0)
+			segout_tmp[7:4] <= 4'h0;
+		else
+		begin
+			case(tensec_cnt)
+			4'b0000: segout_tmp[7:4] <= 4'h0;
+			4'b0001: segout_tmp[7:4] <= 4'h1;
+			4'b0010: segout_tmp[7:4] <= 4'h2;
+			4'b0011: segout_tmp[7:4] <= 4'h3;
+			4'b0100: segout_tmp[7:4] <= 4'h4;
+			4'b0101: segout_tmp[7:4] <= 4'h5;
+			default: segout_tmp[7:4] <= 4'h0;
+			endcase
+		end
+	end
+	
+	always@(posedge onemin_clk)
+	begin
+		if(resetn == 0)
+			onemin_cnt <= 4'b0001;
+		else
+		begin
+			case(onemin_cnt)
+			4'b0000:
+						begin
+							onemin_cnt <= 4'b0001;
+							tenmin_clk <= 1'b1;
+						end					
+			4'b0001: 
+						begin
+							onemin_cnt <= 4'b0010;
+							tenmin_clk <= 1'b0;
+						end						
+			4'b0010: onemin_cnt <= 4'b0011;
+			4'b0011:	onemin_cnt <= 4'b0100;
+			4'b0100: onemin_cnt <= 4'b0101;
+			4'b0101: onemin_cnt <= 4'b0110;
+			4'b0110: onemin_cnt <= 4'b0111;
+			4'b0111: onemin_cnt <= 4'b1000;
+			4'b1000: onemin_cnt <= 4'b1001;
+			4'b1001: onemin_cnt <= 4'b0000;
+			default: onemin_cnt <= 4'b0000;
+			endcase
+		end	
+	end
+	
+	always@(posedge onemin_clk)
+	begin
+		if(resetn ==0)
+			segout_tmp[15:12] <= 4'h0;
+		else
+		begin
+			case(onemin_cnt)
+			4'b0000: segout_tmp[15:12] <= 4'h0;
+			4'b0001: segout_tmp[15:12] <= 4'h1;
+			4'b0010: segout_tmp[15:12] <= 4'h2;
+			4'b0011: segout_tmp[15:12] <= 4'h3;
+			4'b0100: segout_tmp[15:12] <= 4'h4;
+			4'b0101: segout_tmp[15:12] <= 4'h5;
+			4'b0110: segout_tmp[15:12] <= 4'h6;
+			4'b0111: segout_tmp[15:12] <= 4'h7;
+			4'b1000: segout_tmp[15:12] <= 4'h8;
+			4'b1001: segout_tmp[15:12] <= 4'h9;
+			default: segout_tmp[15:12] <= 4'h0;
+			endcase
+		end
+	end
+	
+	always@(posedge tenmin_clk)
+	begin
+		if(resetn==0)
+			tenmin_cnt <=4'b0001;
+		else
+		begin
+			case(tenmin_cnt)
+				4'b0000:
+							begin
+								tenmin_cnt <= 4'b0001;
+								hour_clk <= 1'b1;
+							end
+				4'b0001:
+							begin
+								tenmin_cnt <= 4'b0010;
+								hour_clk <= 1'b0;
+							end
+				4'b0010: tenmin_cnt <= 4'b0011;
+				4'b0011: tenmin_cnt <= 4'b0100;
+				4'b0100: tenmin_cnt <= 4'b0101;
+				4'b0101: tenmin_cnt <= 4'b0000;
+				default: tenmin_cnt <= 4'b0000;
+			endcase
+		end
+	end
+	
+	always@(posedge tenmin_clk)
+	begin
+		if(resetn ==0)
+			segout_tmp[19:16] <= 4'h0;
+		else
+		begin
+			case(tenmin_cnt)
+			4'b0000: segout_tmp[19:16] <= 4'h0;
+			4'b0001: segout_tmp[19:16] <= 4'h1;
+			4'b0010: segout_tmp[19:16] <= 4'h2;
+			4'b0011: segout_tmp[19:16] <= 4'h3;
+			4'b0100: segout_tmp[19:16] <= 4'h4;
+			4'b0101: segout_tmp[19:16] <= 4'h5;
+			default: segout_tmp[19:16] <= 4'h0;
+			endcase
+		end
+	end
+	
+	always@(posedge hour_clk)
+	begin
+		if(resetn ==0)
+			hour_cnt <=4'b0001;
+		else
+		begin
+			case(hour_cnt)
+			4'b0000: hour_cnt <=4'b0001;
+			4'b0001: hour_cnt <=4'b0010;
+			4'b0010: hour_cnt <=4'b0011;
+			4'b0011: hour_cnt <=4'b0100;
+			4'b0100: hour_cnt <=4'b0101;
+			4'b0101: hour_cnt <=4'b0110;
+			4'b0110: hour_cnt <=4'b0111;
+			4'b0111: hour_cnt <=4'b1000;
+			4'b1000: hour_cnt <=4'b1001;
+			4'b1001: hour_cnt <=4'b1010;
+			4'b1010: hour_cnt <=4'b1011;
+			4'b1011: hour_cnt <=4'b0000;
+			default: hour_cnt <=4'b0000;
+			endcase
+		end
+	end
+	
+	always@(posedge hour_clk)
+	begin
+		if(resetn ==0)
+			segout_tmp[31:24] <= 8'h12;
+		else
+		begin
+			case(hour_cnt)
+			4'b0000: segout_tmp[31:24] <= 8'h12;    //kbjkjhkjj
+			4'b0001: segout_tmp[31:24] <= 8'h01;
+			4'b0010: segout_tmp[31:24] <= 8'h02;
+			4'b0011: segout_tmp[31:24] <= 8'h03;
+			4'b0100: segout_tmp[31:24] <= 8'h04;
+			4'b0101: segout_tmp[31:24] <= 8'h05;
+			4'b0110: segout_tmp[31:24] <= 8'h06;
+			4'b0111: segout_tmp[31:24] <= 8'h07;
+			4'b1000: segout_tmp[31:24] <= 8'h08;
+			4'b1001: segout_tmp[31:24] <= 8'h09;
+			4'b1010: segout_tmp[31:24] <= 8'h10;
+			4'b1011: segout_tmp[31:24] <= 8'h11;
+			default: segout_tmp[31:24] <= 8'h12;
+			endcase
+		end
+	end
+endmodule
+
