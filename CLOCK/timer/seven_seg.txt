@@ -1,0 +1,96 @@
+module seven_seg(clk, data, segout, segcom, led_out);
+
+	input clk;
+	input [31:0] data;
+	output[7:0] segout;
+	output [7:0] segcom;
+	output [7:0] led_out;
+	
+	wire[7:0] seg1;
+	wire[7:0] seg2;
+	wire[7:0] seg3;
+	wire[7:0] seg4;
+	wire[7:0] seg5;
+	wire[7:0] seg6;
+	wire[7:0] seg7;
+	wire[7:0] seg8;
+	
+	reg[7:0] segcom_tmp;
+	reg[7:0] segout_tmp;
+	//wire[7:0] led_out_tmp;
+	
+	bin2seg bin2seg_1(.bin_data(data[31:28]), .seg_data(seg1));
+	bin2seg bin2seg_2(.bin_data(data[27:24]), .seg_data(seg2));
+	bin2seg bin2seg_3(.bin_data(data[23:20]), .seg_data(seg3));
+	bin2seg bin2seg_4(.bin_data(data[19:16]), .seg_data(seg4));
+	bin2seg bin2seg_5(.bin_data(data[15:12]), .seg_data(seg5));
+	bin2seg bin2seg_6(.bin_data(data[11:8]), .seg_data(seg6));
+	bin2seg bin2seg_7(.bin_data(data[7:4]), .seg_data(seg7));
+	bin2seg bin2seg_8(.bin_data(data[3:0]), .seg_data(seg8));
+	
+	reg[14:0] clk_cnt;
+	reg[16:0] com_cnt;
+	
+	initial
+	begin
+		clk_cnt=0;
+		com_cnt=0;
+	end
+	
+	always @(posedge clk)
+	begin
+		if(clk_cnt ==16384)
+		begin
+			clk_cnt =0;
+			if(com_cnt ==7)
+				com_cnt =0;
+			else
+				com_cnt = com_cnt+1;
+		end
+		else
+		begin
+			clk_cnt = clk_cnt +1;
+		end
+		
+	case(com_cnt)
+	0: begin
+			segcom_tmp <=8'b10000000;
+			segout_tmp <= ~seg1;
+		end
+	1: begin
+			segcom_tmp <=8'b01000000;
+			segout_tmp <= ~seg2;
+		end
+	2: begin
+			segcom_tmp <=8'b00100000;
+			segout_tmp <= ~8'b00000010;
+		end
+	3: begin
+			segcom_tmp <=8'b00010000;
+			segout_tmp <= ~seg4;
+		end
+	4: begin
+			segcom_tmp <=8'b00001000;
+			segout_tmp <= ~seg5;
+		end
+	5: begin
+			segcom_tmp <=8'b00000100;
+			segout_tmp <= ~8'b00000010;
+		end
+	6: begin
+			segcom_tmp <=8'b00000010;
+			segout_tmp <= ~seg7;
+		end
+	default:
+				begin
+					segcom_tmp <= 8'b00000001;
+					segout_tmp <=~seg8;
+				end
+	endcase
+	end
+	
+	assign segcom = segcom_tmp;
+	assign segout =segout_tmp;
+	
+endmodule
+

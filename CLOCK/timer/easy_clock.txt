@@ -1,8 +1,9 @@
-module easy_clock(clk_in, stop, resetn, led_out, segout, segcom);
+module easy_clock(clk_in, resetn, led_out, segout, segcom, stop, up);
 
 	input clk_in;
 	input resetn;
 	input stop;
+	input up;
 	output[7:0] led_out;
 	output[7:0] segout;   
 	output[7:0] segcom;
@@ -12,6 +13,7 @@ module easy_clock(clk_in, stop, resetn, led_out, segout, segcom);
 	clock clock_inst(
 				.clk_in(clk_in),
 				.stop(stop),
+				.up(up),
 				.resetn(resetn),
 				.segdata(segdata));
 				
