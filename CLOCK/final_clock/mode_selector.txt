@@ -1,0 +1,45 @@
+module mode_selector(mode, resetp, timer_segdata, clock_segdata, segdata);
+	
+	input mode;
+	input[31:0] timer_segdata;
+	input[31:0] clock_segdata;;
+	input resetp;
+	output[31:0] segdata
+
+	reg[31:0] segdata_tmp;
+	reg[2:0] mode_tmp;
+
+	assign segdata = segdata_tmp;
+	initial
+	begin
+		mode_tmp = 0;
+		segdata_tmp = 0;
+	end
+	
+	
+	always@(posedge mode)
+	begin
+		case(mode_tmp)
+		3'b00: mode_tmp <= 3'b01;
+		3'b01: mode_tmp <= 3'b10;
+		3'b10: mode_tmp <= 3'b01;
+		default:
+	end
+
+	always@(mode_tmp)
+	begin
+		case(mode_tmp)
+		3'b00: segdata_tmp <= 0;
+		3'b01: segdata_tmp <=clock_segdata;
+		3'b10: segdata_tmp <=timer_segdata;
+	end
+	
+	always@(posedge resetp)
+	begin
+		mode_tmp <= 0;
+	end
+
+	
+
+	
+endmodule

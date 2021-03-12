@@ -1,24 +1,23 @@
-module clock(clk_in, resetn, segdata, stop, up);
+module timer_clock(clk_in, stop, resetp, resetn, segdata,);
 
 	input clk_in;
 	input resetn;
 	input stop;             //
-	input up;
+	input resetp;
+
 	output[31:0] segdata;
-	reg temp_clk;
 	reg onesec_clk;
 
 	reg stop_temp;       //
-	reg up_temp;   
-	reg[15:0]  up_cnt; 
+
+	reg[15:0]  time_cnt; 
 	
-	reg[3:0] onesec_cnt;
 	
 	reg[31:0] segout_tmp;
 	reg[32:0] cnt;
 	reg clk_out;
 	
-	newcontrol ab1 (.up_cnt(up_cnt), .segout_tmp(segout_tmp));	
+	newcontrol ab2 (.up_cnt(time_cnt), .segout_tmp(segout_tmp));	
 
 	assign segdata =segout_tmp;
 	
@@ -26,26 +25,31 @@ module clock(clk_in, resetn, segdata, stop, up);
 	begin
 			temp_clk = 0;
 			onesec_clk = 0;
-			
-			onesec_cnt = 0;
-	
 			segout_tmp = 0;
 			cnt = 0;
 			clk_out = 0;	
 			reg stop_temp = 1;       //
-			reg up_temp = 0;   	
-			reg up_cnt = 0;	
+			reg time_temp = 0;   	
+			reg time_cnt = 0;	
 	end
 	
 	always@(posedge stop)
 	begin
-		stop_temp = ~stop_temp
+		stop_temp = ~stop_temp;
+	end
+	
+	always@(posedge resetp)
+	begin
+		temp_clk <= 0;
+			onesec_clk <= 0;
+			segout_tmp <= 0;
+			cnt <= 0;
+			clk_out <= 0;	
+			reg stop_temp <= 1;       //
+			reg time_temp< = 0;   	
+			reg time_cnt <= 0;	
 	end
 
-	always@(posedge up)
-	begin
-		up_temp = ~up_temp
-	end
 	
 	always@(posedge clk_in)             //pause operation is added
 	begin
@@ -70,24 +74,14 @@ module clock(clk_in, resetn, segdata, stop, up);
 	end
 	end
 
-	always@(up_temp)  // time seting operation is added
+	always@(onesec_clk)  // time seting operation is added
 	begin
-		up_cnt = up_cnt + 2'b1;
-	end
-
-	always@(onesec_clk)
-	begin
-
-		up_cnt = up_cnt -2'b1;
-		if(up_cnt == 0)
+		time_cnt = time_cnt + 2'b1;
+		if(time_cnt==43200)
 		begin
-			stop_temp= ~stop_temp;
-			cnt = 0;
-			clk_out = 0;
+			time_cnt =0;
 		end
-
 	end
-
 	
 	
 

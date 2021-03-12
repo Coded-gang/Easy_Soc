@@ -1,9 +1,10 @@
-module clock(clk_in, resetn, segdata, stop, up);
+module timer_clock(clk_in, stop, up, resetp, resetn, segdata);
 
 	input clk_in;
 	input resetn;
 	input stop;             //
 	input up;
+	input resetp;
 	output[31:0] segdata;
 	reg temp_clk;
 	reg onesec_clk;
@@ -39,14 +40,29 @@ module clock(clk_in, resetn, segdata, stop, up);
 	
 	always@(posedge stop)
 	begin
-		stop_temp = ~stop_temp
+		stop_temp = ~stop_temp;
 	end
 
 	always@(posedge up)
 	begin
-		up_temp = ~up_temp
+		up_temp = ~up_temp;
 	end
+
+	always@(posedge resetp)
+	begin
+		temp_clk <= 0;
+			onesec_clk <= 0;
+			
+			onesec_cnt <= 0;
 	
+			segout_tmp <= 0;
+			cnt <= 0;
+			clk_out <= 0;	
+			reg stop_temp <= 1;       //
+			reg up_temp <= 0;   	
+			reg up_cnt <= 0;	
+	end
+
 	always@(posedge clk_in)             //pause operation is added
 	begin
 	if(stop_temp == 0)
@@ -78,7 +94,7 @@ module clock(clk_in, resetn, segdata, stop, up);
 	always@(onesec_clk)
 	begin
 
-		up_cnt = up_cnt -2'b1;
+		up_cnt = up_cnt -2'b1;      //I bet error is occured (-1)
 		if(up_cnt == 0)
 		begin
 			stop_temp= ~stop_temp;

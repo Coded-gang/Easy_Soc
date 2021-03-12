@@ -1,0 +1,128 @@
+module newcontrol(up_cnt, segout_tmp)
+
+	input[15:0] up_cnt;
+	output[31:0] segout_tmp;
+	
+	reg[31:0] segout_tmp_tmp;
+
+	reg[3:0] one_sec;
+	reg[3:0] ten_sec;
+	reg[3:0] one_min;
+	reg[3:0] ten_min;
+	reg[7:0] hour;
+
+	initial
+	begin
+		segout_tmp_tmp =0;
+		one_sec = 0;
+		ten_sec = 0;
+		one_min = 0;
+		ten_min =0;
+		hour = 0;
+	end
+	
+	assgin segout_tmp = segout_tmp_tmp;
+
+	always@(up_cnt)
+	begin
+		one_sec <= (up_cnt % 60) % 10 ;
+		ten_sec <= (up_cnt %60) / 10;  // asuume
+		one_min <= ((up_cnt / 60)% 60)%10 ;
+		ten_min <= ((up_cnt /60)%60)/10;
+		hour <= (up_cnt/3600)
+	end
+	
+	always@(one_sec)
+	begin
+			case(one_sec)
+				4'b0000: segout_tmp_tmp[3:0] <= 4'h0;
+				4'b0001: segout_tmp_tmp[3:0] <= 4'h1;
+				4'b0010: segout_tmp_tmp[3:0] <= 4'h2;
+				4'b0011: segout_tmp_tmp[3:0] <= 4'h3;
+				4'b0100: segout_tmp_tmp[3:0] <= 4'h4;
+				4'b0101: segout_tmp_tmp[3:0] <= 4'h5;
+				4'b0110: segout_tmp_tmp[3:0] <= 4'h6;
+				4'b0111: segout_tmp_tmp[3:0] <= 4'h7;
+				4'b1000: segout_tmp_tmp[3:0] <= 4'h8;
+				4'b1001: segout_tmp_tmp[3:0] <= 4'h9;
+				default: segout_tmp_tmp[3:0] <= 4'h0;
+			endcase
+	
+	end
+
+	always@(ten_sec)
+	begin
+			case(ten_sec)
+				4'b0000: segout_tmp_tmp[7:4] <= 4'h0;
+				4'b0001: segout_tmp_tmp[7:4] <= 4'h1;
+				4'b0010: segout_tmp_tmp[7:4] <= 4'h2;
+				4'b0011: segout_tmp_tmp[7:4] <= 4'h3;
+				4'b0100: segout_tmp_tmp[7:4] <= 4'h4;
+				4'b0101: segout_tmp_tmp[7:4] <= 4'h5;
+				4'b0110: segout_tmp_tmp[7:4] <= 4'h6;
+				4'b0111: segout_tmp_tmp[7:4] <= 4'h7;
+				4'b1000: segout_tmp_tmp[7:4] <= 4'h8;
+				4'b1001: segout_tmp_tmp[7:4] <= 4'h9;
+				default: segout_tmp_tmp[7:4] <= 4'h0;
+			endcase
+	
+	end
+
+	always@(one_min)
+	begin
+			case(one_min)
+				4'b0000: segout_tmp_tmp[15:12] <= 4'h0;
+				4'b0001: segout_tmp_tmp[15:12] <= 4'h1;
+				4'b0010: segout_tmp_tmp[15:12] <= 4'h2;
+				4'b0011: segout_tmp_tmp[15:12] <= 4'h3;
+				4'b0100: segout_tmp_tmp[15:12] <= 4'h4;
+				4'b0101: segout_tmp_tmp[15:12] <= 4'h5;
+				4'b0110: segout_tmp_tmp[15:12] <= 4'h6;
+				4'b0111: segout_tmp_tmp[15:12] <= 4'h7;
+				4'b1000: segout_tmp_tmp[15:12] <= 4'h8;
+				4'b1001: segout_tmp_tmp[15:12] <= 4'h9;
+				default: segout_tmp_tmp[15:12] <= 4'h0;
+			endcase
+	
+	end
+
+	always@(ten_min)
+	begin
+			case(ten_min)
+				4'b0000: segout_tmp_tmp[19:16] <= 4'h0;
+				4'b0001: segout_tmp_tmp[19:16] <= 4'h1;
+				4'b0010: segout_tmp_tmp[19:16] <= 4'h2;
+				4'b0011: segout_tmp_tmp[19:16] <= 4'h3;
+				4'b0100: segout_tmp_tmp[19:16] <= 4'h4;
+				4'b0101: segout_tmp_tmp[19:16] <= 4'h5;
+				4'b0110: segout_tmp_tmp[19:16] <= 4'h6;
+				4'b0111: segout_tmp_tmp[19:16] <= 4'h7;
+				4'b1000: segout_tmp_tmp[19:16] <= 4'h8;
+				4'b1001: segout_tmp_tmp[19:16] <= 4'h9;
+				default: segout_tmp_tmp[19:16] <= 4'h0;
+			endcase
+	
+	end
+	always@(hour)
+	begin
+			case(hour)
+				4'b0000: segout_tmp_tmp[31:24] <= 8'h0;    
+				4'b0001: segout_tmp_tmp[31:24] <= 8'h01;
+				4'b0010: segout_tmp_tmp[31:24] <= 8'h02;
+				4'b0011: segout_tmp_tmp[31:24] <= 8'h03;
+				4'b0100: segout_tmp_tmp[31:24] <= 8'h04;
+				4'b0101: segout_tmp_tmp[31:24] <= 8'h05;
+				4'b0110: segout_tmp_tmp[31:24] <= 8'h06;
+				4'b0111: segout_tmp_tmp[31:24] <= 8'h07;
+				4'b1000: segout_tmp_tmp[31:24] <= 8'h08;
+				4'b1001: segout_tmp_tmp[31:24] <= 8'h09;
+				4'b1010: segout_tmp_tmp[31:24] <= 8'h10;
+				4'b1011: segout_tmp_tmp[31:24] <= 8'h11;
+				default: segout_tmp_tmp[31:24] <= 8'h12;
+			endcase
+	
+	end
+
+
+
+endmodule

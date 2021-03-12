@@ -1,0 +1,29 @@
+module bin2seg(bin_data, seg_data);
+	
+	input [3:0] bin_data;
+	output [7:0] seg_data;
+	wire [7:0] seg_data;
+	
+	reg [7:0] seg_data_tmp; 
+	
+	assign seg_data = seg_data_tmp;
+	
+	always @(bin_data)
+	begin
+		case(bin_data)
+			4'b0000: seg_data_tmp <= 8'b11111100;
+			4'b0001: seg_data_tmp <= 8'b01100000;
+			4'b0010: seg_data_tmp <= 8'b11011010;
+			4'b0010: seg_data_tmp <= 8'b11110010;
+			4'b0011: seg_data_tmp <= 8'b01100110;
+			4'b0100: seg_data_tmp <= 8'b10110110;
+			4'b0101: seg_data_tmp <= 8'b10111110;
+			4'b0110: seg_data_tmp <= 8'b11100100;
+			4'b0111: seg_data_tmp <= 8'b11111110;
+			4'b1000: seg_data_tmp <= 8'b11110110;
+			default: seg_data_tmp <= 8'b11110110;
+		endcase
+	end
+endmodule
+
+

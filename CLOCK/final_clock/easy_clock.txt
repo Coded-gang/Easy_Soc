@@ -1,0 +1,49 @@
+module easy_clock(clk_in, resetn, led_out, segout, segcom, stop, up, mode, resetp);
+
+	input clk_in;
+	input resetn;
+	input stop;
+	input up; 
+	input mode;
+	input resetp;
+
+	output[7:0] led_out;
+	output[7:0] segout;   
+	output[7:0] segcom;
+	
+	wire[31:0] timer_segdata;
+	wire[31:0] clock_segdata;
+	wire[31:0] segdata
+
+	clock clock_inst1(
+				.clk_in(clk_in),
+				.stop(stop),
+				.resetp(resetp),
+				.resetn(resetn),
+				.segdata(clock_segdata));
+	timer_clock clock_inst2(
+				.clk_in(clk_in),
+				.stop(stop),
+				.up(up),
+				.resetp(resetp),
+				.resetn(resetn),
+				.segdata(timer_segdata));
+
+	mode_selector selector(
+				.mode(mode), 
+				.resetp(resetp),
+				.timer_segdata(timer_segdata),
+				.clock_segdata(clock_segdata),
+				.segdata(segdata));
+				
+	seven_seg seven_seg_inst (
+				.clk(clk_in),
+				.data(segdata),
+				.segout(segout),
+				.segcom(segcom),
+				.led_out(led_out));
+
+	
+
+
+endmodule
